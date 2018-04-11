@@ -1,5 +1,10 @@
 <?php
 
+use App\Centro_medico;
+use App\Medicos;
+use App\Suscripciones;
+use App\Usuarios_sistema;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -12,6 +17,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+/*
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -21,4 +27,67 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
+});*/
+
+$factory->define(Centro_medico::class, function (Faker\Generator $faker) {
+
+    return [
+        'Nombre'    => $faker->word,
+        'Direccion' => $faker->address(),
+        'Estado'    => randomElement([Centro_medico::ACTIVA, Centro_medico::NO_ACTIVO]),
+    ];
 });
+
+
+$factory->define(Usuarios_sistema::class, function (Faker\Generator $faker) {
+	static $password;
+
+    return [
+        'Usuario' 		      => $faker->name,
+        'Password' 			  => $password ?: $password = bcrypt('secret'),
+        'Email' 			  => $faker->unique()->safeEmail, 
+        'Fecha_registro' 	  => $faker->date(),
+        'Token_verificacion'  => Usuarios_sistema::generateToken(),
+        'Verificada'		  => $faker->randomElement(Usuarios_sistema::VERIFICADA, Usuarios_sistema::NO_VERIFICADA),
+        'idMedico' 		      => $faker->word,
+        'idEnfermera'         => $faker->word,
+        'idCentro_medico'     => $faker->word,
+        'idTipo_usuario'      => $faker->word,
+        'Estado'              => $faker->randomElement(Usuarios_sistema::ACTIVA, Usuarios_sistema::NO_ACTIVA),
+
+    ];
+});
+
+
+$factory->define(Suscripciones::class, function (Faker\Generator $faker) {
+
+    return [
+        'Tipo_suscripcion'    => $faker->word,
+        'Nombre_persona' => $faker->paragraph(1),
+        'Apellidos_persona'    => $faker->randomElement([Centro_medico::ACTIVA, Centro_medico::NO_ACTIVO]),
+        'Fecha_inscripcion' => $faker,
+        'Cedula' => $faker,
+        'idCentro_medico' => $faker,
+        'idUsuarios_sistema' => $faker,
+        'Estado' => $faker,
+    ];
+});
+
+
+$factory->define(Medicos::class, function (Faker\Generator $faker) {
+
+    return [
+        'Nombre'    => $faker->word,
+        'Apellido' => $faker->paragraph(1),
+    	'Especialidad' => $faker,
+        'Sexo'    => $faker->randomElement([Centro_medico::ACTIVA, Centro_medico::NO_ACTIVO]),
+        'Edad' => $faker,
+        'Direccion' => $faker,
+        'id_Centro_medico' => $faker,
+        'id_Usuario' => $faker,
+        'Estado' => $faker,
+
+    ];
+});
+
+
