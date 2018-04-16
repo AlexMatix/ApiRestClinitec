@@ -12,6 +12,8 @@ use App\Usuarios_sistema;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -27,7 +29,7 @@ class DatabaseSeeder extends Seeder
         
         //trunco las tablas para poder meter datos nuevos
 
-        //Centro_medico::truncate();
+        Centro_medico::truncate();
         Camas_x_piso::truncate();
         Enfermeras::truncate();
         Infrestructura_Centro_medico::truncate();
@@ -46,7 +48,7 @@ class DatabaseSeeder extends Seeder
         $cantidadUsuariosSistema = 50;
         $cantidadSuscripciones   = 3;
 
-        //factory(Centro_medico::class, $cantidadCentrosMedicos)->create();
+        factory(Centro_medico::class, $cantidadCentrosMedicos)->create();
         factory(Medicos::class, $cantidadMedicos)->create();
         factory(Enfermeras::class, $cantidadEnfermeras)->create();
         factory(Pacientes::class, $cantidadPacientes)->create();
