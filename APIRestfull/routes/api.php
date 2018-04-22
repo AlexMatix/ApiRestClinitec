@@ -26,7 +26,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('suscripciones', 'Suscripciones\SuscripcionesController');
 
-Route::resource('centro-medico', 'CentroMedico\CentroMedicoController');
+Route::resource('centro-medico', 'CentroMedico\CentroMedicoController', ['except' => ['create','destroy']]);
 
 Route::resource('medicos', 'Medicos\MedicosController');
 
@@ -36,7 +36,7 @@ Route::resource('pacientes', 'Pacientes\PacientesController');
 
 Route::resource('usuarios', 'UsuariosSistema\UsuariosSistemaController');
 
-Route::resource('infrestructura', 'InfrestructuraCentroMedico\InfrestructuraCentroMedicoController');
+//Route::resource('infrestructura', 'InfrestructuraCentroMedico\InfrestructuraCentroMedicoController');
 
 Route::resource('camas', 'CamasXPiso\CamasXPisoController');
 

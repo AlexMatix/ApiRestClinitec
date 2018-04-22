@@ -37,6 +37,7 @@ $factory->define(Centro_medico::class, function (Faker\Generator $faker) {
     return [
         'Nombre'    => $faker->lastName,
         'Direccion' => $faker->state,
+        'Tipo_centro_medico' => $faker->randomElement([Centro_medico::CONSULTORIO,Centro_medico::CLINICA,Centro_medico::HOPITAL_BASICO,Centro_medico::HOPITAL_PREMIUM]),
     ];
 });
 

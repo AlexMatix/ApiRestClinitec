@@ -41,12 +41,12 @@ class DatabaseSeeder extends Seeder
 
         //Variables para la cantidad de datos creados por tabla
 
-        $cantidadCentrosMedicos  = 3;
+        $cantidadCentrosMedicos  = 10;
         $cantidadMedicos         = 50;
         $cantidadEnfermeras      = 50;
         $cantidadPacientes       = 50;
         $cantidadUsuariosSistema = 50;
-        $cantidadSuscripciones   = 3;
+        $cantidadSuscripciones   = 10;
 
         factory(Centro_medico::class, $cantidadCentrosMedicos)->create();
         factory(Medicos::class, $cantidadMedicos)->create();
