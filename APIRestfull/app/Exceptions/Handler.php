@@ -2,9 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Traits\ApiResponse;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -13,6 +15,8 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
+    use ApiResponse;
+
     protected $dontReport = [
         \Illuminate\Auth\AuthenticationException::class,
         \Illuminate\Auth\Access\AuthorizationException::class,
@@ -44,6 +48,15 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof ValidationException){
+            return $this->convertValidationExceptionToResponse($exception, $request);
+        }
+
+        if($exception instanceof ModelNotFoundException){
+            $model = $exception->getModel();
+            return $this->errorResponse('No exite el mmodelo {$model}', $request);
+        }
+        
         return parent::render($request, $exception);
     }
 
@@ -61,5 +74,24 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest(route('login'));
+    }
+
+    
+    /**
+     * Create a response object from the given validation exception.
+     *
+     * @param  \Illuminate\Validation\ValidationException  $e
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function convertValidationExceptionToResponse(ValidationException $e, $request)
+    {
+        if ($e->response) {
+            return $e->response;
+        }
+
+        $errors = $e->validator->errors()->getMessages();
+
+        return $this->errorResponse($errors, 422);
     }
 }
