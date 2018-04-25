@@ -4,9 +4,15 @@ namespace App\Exceptions;
 
 use App\Traits\ApiResponse;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -53,8 +59,38 @@ class Handler extends ExceptionHandler
         }
 
         if($exception instanceof ModelNotFoundException){
-            $model = $exception->getModel();
-            return $this->errorResponse('No exite el mmodelo {$model}', $request);
+            $model = strtolower(basename($exception->getModel()));
+            return $this->errorResponse("No exite el modelo {$model}", 404);
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return $this->unauthenticated($request, $exception);
+        }
+
+        if ($exception instanceof AuthorizationException) {
+            return $this->errorResponse("No tiene permisos para ejecutar esta accion", 403);   
+        }
+        
+        if ($exception instanceof NotFoundHttpException) {
+            return $this->errorResponse("EndPoint no encontrado", 404);   
+        }
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return $this->errorResponse("El metodo no es valido", 405);   
+        }
+
+        if ($exception instanceof HttpException) {
+            return $this->errorResponse($exception->getMessage(),$exception->getStatusCode());   
+        }
+
+        if ($exception instanceof QueryException) {
+            $codigo = $exception->errorInfo[1];
+            if($codigo == 1451) 
+            return $this->errorResponse('No se puede eliminar, recurso con relaciones',409);   
+        }
+
+        if(config('api.debug')){
+            return $this->errorResponse('Error inesperado. Intenta mas tarde',500);   
         }
         
         return parent::render($request, $exception);
@@ -69,11 +105,11 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
-        }
+        //if ($request->expectsJson()) {
+            return $this->errorResponse('No auntenticado', 401);
+        //}
 
-        return redirect()->guest(route('login'));
+        //return redirect()->guest(route('login'));
     }
 
     

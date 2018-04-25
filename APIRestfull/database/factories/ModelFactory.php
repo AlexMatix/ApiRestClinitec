@@ -102,7 +102,7 @@ $factory->define(Usuarios_sistema::class, function (Faker\Generator $faker) {
 	static $password;
 
     return [
-        'Usuario' 		      => $faker->lastName,
+        'Usuario' 		      => $faker->username,
         'Password' 			  => $password ?: $password = bcrypt('secret'),
         'Email' 			  => $faker->safeEmail, 
         'Fecha_registro' 	  => $faker->date,
