@@ -1,0 +1,428 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"No",
+				"NO_VERIFICADA〔constant〕"
+			],
+			[
+				"rand",
+				"randomElement〔function〕"
+			],
+			[
+				"Usuarios",
+				"Usuarios_sistema"
+			],
+			[
+				"A",
+				"ADMINISTRADOR〔constant〕"
+			],
+			[
+				"rando",
+				"randomElement"
+			],
+			[
+				"ran",
+				"randomElement〔function〕"
+			],
+			[
+				"N",
+				"NO_VERIFICADA〔constant〕"
+			],
+			[
+				"ra",
+				"randomElement〔function〕"
+			],
+			[
+				"Usuar",
+				"Usuarios_sistema"
+			],
+			[
+				"Usuari",
+				"Usuarios_sistema〔namespace〕"
+			],
+			[
+				"fac",
+				"factory"
+			],
+			[
+				"statement",
+				"mssql_free_statement"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "insta",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 497.0
+	},
+	"console":
+	{
+		"height": 393.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/alex/Proyectos/APIRestfull"
+	],
+	"file_history":
+	[
+		"/home/alex/Proyectos/APIRestfull/.env",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/.env",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/routes/api.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Usuarios_sistema.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Http/Controllers/UsuariosSistema/UsuariosSistemaController.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Http/Controllers/Suscripciones/SuscripcionesController.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Http/Controllers/CentroMedico/CentroMedicoController.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Suscripciones.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Http/Controllers/UsuariosSistema/UsuarioSuscripcionController.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/factories/ModelFactory.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/script.sql",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Tipo_usuario.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_03_014247_create_centro_medicos_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Centro_medico.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/seeds/DatabaseSeeder.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/vendor/laravel/framework/src/Illuminate/Database/Seeder.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/vendor/symfony/routing/Route.php",
+		"/home/alex/.config/sublime-text-3/Packages/User/php.sublime-build",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_08_195846_create_tipo_usuarios_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_09_496414_create_usuarios_sistemas_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_09_003924_create_pacientes_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Http/Controllers/Enfermeras/EnfermerasController.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Pacientes.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Enfermeras.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Medicos.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Infrestructura_Centro_medico.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/vendor/fzaninotto/faker/src/Faker/Generator.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Camas_x_piso.php",
+		"/home/alex/Escritorio/left_panel.html",
+		"/home/alex/Descargas/sufee-admin-dashboard-master/index.html",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_09_502529_create_suscripciones_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_08_222201_create_enfermeras_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_03_014417_create_infrestructura__centro_medicos_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_03_015257_create_camas_x_pisos_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_13_003924_create_pacientes_table.php",
+		"/home/alex/Dropbox/Ceci/Formularios/PacientesAdmitidos/pacientes-admitidos.html",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_03_015333_create_medicos_table.php",
+		"/home/alex/Escritorio/main.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_08_195414_create_usuarios_sistemas_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_08_202529_create_suscripciones_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/database/migrations/2018_04_08_200447_create_suscripcions_table.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Suscripcion.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Providers/AppServiceProvider.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/vendor/laravel/framework/src/Illuminate/Support/Facades/Schema.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/routes/web.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/app/Providers/RouteServiceProvider.php",
+		"/home/alex/Dropbox/Proyecto Meditec/script.sql",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/vendor/autoload.php",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/Homestead.yaml",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull/Vagrantfile",
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/README.md",
+		"/home/alex/Proyectos/Repos/ApiRestMediteck/README.md"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"NO_CONFIG",
+			"pacientes",
+			"random",
+			"idMedico",
+			"randomElement",
+			"activo",
+			"str_random",
+			"name",
+			"address",
+			"adress",
+			"direccion",
+			"Centro_medico",
+			"otros",
+			"edad",
+			"sexo",
+			"clinitec",
+			"mydb"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"lastName",
+			"state",
+			"technous_clinitecPruebas",
+			"clinitec"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 48.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 103.0
+	},
+	"output.exec":
+	{
+		"height": 103.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/php.sublime-build",
+	"project": "apirestfullsublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"scr",
+				"script.sql"
+			],
+			[
+				"tipo",
+				"APIRestfull/app/Tipo_usuario.php"
+			],
+			[
+				"susc",
+				"APIRestfull/app/Http/Controllers/Suscripciones/SuscripcionesController.php"
+			],
+			[
+				"sus",
+				"APIRestfull/app/Suscripciones.php"
+			],
+			[
+				"centro_me",
+				"APIRestfull/app/Centro_medico.php"
+			],
+			[
+				"usua",
+				"APIRestfull/app/Usuarios_sistema.php"
+			],
+			[
+				"usu",
+				"APIRestfull/app/Usuarios_sistema.php"
+			],
+			[
+				"seed",
+				"APIRestfull/vendor/laravel/framework/src/Illuminate/Database/Seeder.php"
+			],
+			[
+				"rou",
+				"APIRestfull/vendor/symfony/routing/Route.php"
+			],
+			[
+				"centro",
+				"APIRestfull/database/migrations/2018_04_03_014247_create_centro_medicos_table.php"
+			],
+			[
+				"usuari",
+				"APIRestfull/database/migrations/2018_04_09_496414_create_usuarios_sistemas_table.php"
+			],
+			[
+				"usurio",
+				"APIRestfull/app/Usuarios_sistema.php"
+			],
+			[
+				"usuario",
+				"APIRestfull/database/migrations/2018_04_09_496414_create_usuarios_sistemas_table.php"
+			],
+			[
+				"pacien",
+				"APIRestfull/database/migrations/2018_04_09_003924_create_pacientes_table.php"
+			],
+			[
+				"us",
+				"APIRestfull/app/Usuarios_sistema.php"
+			],
+			[
+				"pacie",
+				"APIRestfull/database/migrations/2018_04_09_003924_create_pacientes_table.php"
+			],
+			[
+				"paciente",
+				"APIRestfull/database/migrations/2018_04_09_003924_create_pacientes_table.php"
+			],
+			[
+				"genera",
+				"APIRestfull/vendor/fzaninotto/faker/src/Faker/Generator.php"
+			],
+			[
+				"mode",
+				"APIRestfull/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php"
+			],
+			[
+				"model",
+				"APIRestfull/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php"
+			],
+			[
+				"cama",
+				"APIRestfull/app/Camas_x_piso.php"
+			],
+			[
+				"camas",
+				"APIRestfull/app/Camas_x_piso.php"
+			],
+			[
+				"infre",
+				"APIRestfull/app/Infrestructura_Centro_medico.php"
+			],
+			[
+				"medic",
+				"APIRestfull/app/Medicos.php"
+			],
+			[
+				"usuar",
+				"APIRestfull/app/Usuarios_sistema.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Proyectos/Repos/ApiRestClinitec/apirestfullsublime-project.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "facor",
+		"selected_items":
+		[
+			[
+				"facor",
+				"Factory"
+			]
+		],
+		"width": 932.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 235.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
