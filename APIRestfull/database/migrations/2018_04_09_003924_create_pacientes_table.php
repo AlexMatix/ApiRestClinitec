@@ -25,7 +25,11 @@ class CreatePacientesTable extends Migration
             $table->date('Fecha_inscripcion');
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('Estado')->unsigned();
+
+            //DEFINIMOS LAS LLAVES FORANEAS
+            $table->foreign('idCentro_medico')->references('id')->on('centro_medico');
         });
+
     }
 
     /**

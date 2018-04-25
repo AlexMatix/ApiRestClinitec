@@ -24,17 +24,6 @@ class CamasXPisoController extends ApiController
        }
         
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -43,7 +32,7 @@ class CamasXPisoController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -54,18 +43,8 @@ class CamasXPisoController extends ApiController
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $cama = Camas_x_piso::findOrFail($id);
+        return $this->showOne($cama);
     }
 
     /**
@@ -88,6 +67,15 @@ class CamasXPisoController extends ApiController
      */
     public function destroy($id)
     {
-        //
+      
+      $cama = Camas_x_piso::findOrFail($id); 
+      $cama->Estado = Camas_x_piso::NO_ACTIVA;
+
+      if(!$cama->save()){
+         return $this->errorResponse('No se pudieron eliminar los datos', 404);
+      }
+
+      return $this->succesMessaje('Eliminado con exito', 201);
+
     }
 }

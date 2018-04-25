@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Enfermeras;
 
-use Illuminate\Http\Request;
+use App\Enfermeras;
 use App\Http\Controllers\ApiController;
+use App\Traits\showOne;
+use Illuminate\Http\Request;
 
 class EnfermerasController extends ApiController
 {
@@ -14,17 +16,12 @@ class EnfermerasController extends ApiController
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $enfermeras = Enfermeras::where("Estado", "<>", 0)->get();
+        if(!empty($enfermeras)){
+            return $this->showAll($enfermeras);
+        }else{
+            return $this->errorResponse('Datos no encontrados', 404);        
+        }
     }
 
     /**
@@ -35,7 +32,10 @@ class EnfermerasController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        $campos    = $request->all();
+        $newEnfermera = Enfermeras::create($campos);
+        //201 = respuesta de success register
+        return $this->showAll($newEnfermera);
     }
 
     /**
@@ -44,21 +44,11 @@ class EnfermerasController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Enfermeras $enfermera)
     {
-        //
+        return $this->showOne($enfermera);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -78,8 +68,15 @@ class EnfermerasController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Enfermeras $enfermera)
     {
-        //
+        
+      $enfermera->Estado = Enfermeras::NO_ACTIVA;
+
+      if(!$enfermera->save()){
+         return $this->errorResponse('No se pudieron eliminar los datos', 404);
+      }
+
+      return $this->succesMessaje('Eliminado con exito', 201);
     }
 }

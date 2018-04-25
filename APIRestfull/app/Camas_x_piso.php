@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Camas_x_piso extends Model
 {
     //
+    CONST ACTIVA 	   = 1;
+    CONST NO_ACTIVA    = 0;
     CONST CAMA_LIBRE   = 0;
     CONST CAMA_OCUPADA = 1;
 

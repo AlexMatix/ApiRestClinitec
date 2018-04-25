@@ -8,7 +8,7 @@ class Enfermeras extends Model
 {
     //
     CONST ACTIVA = 1;
-    CONST NO_ACTIVA = 1;
+    CONST NO_ACTIVA = 0;
 
     protected $fillable = [
     	'id',
