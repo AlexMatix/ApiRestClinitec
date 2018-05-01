@@ -22,8 +22,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // *************                                 *****************     ***  ['except' => ['create','edit']] excluye los metodos del arreglo
 
 
-
-
 Route::resource('suscripciones', 'Suscripciones\SuscripcionesController', ['except' => ['create','edit']]);
 
 Route::resource('centro-medico', 'CentroMedico\CentroMedicoController', ['except' => ['create','edit']]);

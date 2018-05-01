@@ -55,6 +55,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "APIRestfull/fichero-exportacion.sql",
+			"settings":
+			{
+				"buffer_size": 35042,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -101,7 +109,7 @@
 	},
 	"expanded_folders":
 	[
-		"/home/alex/Proyectos/APIRestfull"
+		"/home/alex/Proyectos/Repos/ApiRestClinitec/APIRestfull"
 	],
 	"file_history":
 	[
@@ -162,7 +170,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 32.0
 	},
 	"find_in_files":
 	{
@@ -214,14 +222,48 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "APIRestfull/fichero-exportacion.sql",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 35042,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1913,
+								1913
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQL/SQL.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 168.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 32.0
 	},
 	"input":
 	{
@@ -274,7 +316,7 @@
 	"project": "apirestfullsublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 60.0
 	},
 	"save_all_on_build": true,
 	"select_file":
