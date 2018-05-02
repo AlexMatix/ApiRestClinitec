@@ -15,6 +15,7 @@ class Recetas extends Model
      'Titulo',
      'Descripcion',
      'Medicamentos',
+     'idConsulta',
      'idCentro_medico',
      'Estado',
     ];

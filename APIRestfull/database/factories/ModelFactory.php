@@ -9,6 +9,7 @@ use App\Enfermeras;
 use App\Farmacias;
 use App\Medicos;
 use App\Pacientes;
+use App\Recetas;
 use App\Suscripciones;
 use App\Usuarios_sistema;
 
@@ -217,5 +218,20 @@ $factory->define(Consultas::class, function (Faker\Generator $faker) {
         'idPaciente'           => $Paciente->id,
         'idCentro_medico'      => $Centro_medico->id,
         'Estado'               => $faker->randomElement([Consultas::NO_ACTIVO, Consultas::ACTIVO]),
+    ];
+});
+
+
+$factory->define(Recetas::class, function (Faker\Generator $faker) {
+    $Centro_medico = Centro_medico::all()->random();
+    $Consultas     = Consultas::all()->random();
+
+    return [
+        'Titulo'           => $faker->name,
+        'Descripcion'      => $faker->text($maxNbChars = 20),
+        'Medicamentos'     => $faker->randomElement(["{'id' : 10}","{'id' : 20}","{'id' : 3s0}"]),
+        'idConsulta'       => $Consultas->id,
+        'idCentro_medico'  => $Centro_medico->id,
+        'Estado'           => $faker->randomElement([Recetas::NO_ACTIVO, Recetas::ACTIVO]),
     ];
 });

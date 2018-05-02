@@ -19,10 +19,12 @@ class CreateRecetasTable extends Migration
             $table->string('Titulo');
             $table->string('Descripcion')->nullable();
             $table->text('Medicamentos')->nullable();
+            $table->integer('idConsulta')->unsigned();
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('Estado')->unsigned()->default(Recetas::ACTIVO);
 
             //Llaves foraneas
+            $table->foreign('idConsulta')->references('id')->on('consultas');
             $table->foreign('idCentro_medico')->references('id')->on('centro_medico');
         });
     }
