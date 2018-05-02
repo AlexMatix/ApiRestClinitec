@@ -1,8 +1,13 @@
 <?php
 
+use App\Almacenes;
+use App\Cajas;
 use App\Camas_x_piso;
 use App\Centro_medico;
+use App\Cirugias;
+use App\Consultas;
 use App\Enfermeras;
+use App\Farmacias;
 use App\Infrestructura_Centro_medico;
 use App\Medicos;
 use App\Pacientes;
@@ -38,6 +43,11 @@ class DatabaseSeeder extends Seeder
         Suscripciones::truncate();
         Tipo_usuario::truncate();
         Usuarios_sistema::truncate();
+        Cirugias::truncate();
+        Almacenes::truncate();
+        Farmacias::truncate();
+        Cajas::truncate();
+        Consultas::truncate();
 
         //Variables para la cantidad de datos creados por tabla
 
@@ -47,6 +57,11 @@ class DatabaseSeeder extends Seeder
         $cantidadPacientes       = 50;
         $cantidadUsuariosSistema = 50;
         $cantidadSuscripciones   = 10;
+        $cantidadCirugias        = 40;
+        $cantidadAlmacenes       = 20;
+        $cantidadFarmacias       = 40;
+        $cantidadCajas           = 40;
+        $cantidadConsultas       = 40;
 
         factory(Centro_medico::class, $cantidadCentrosMedicos)->create();
         factory(Medicos::class, $cantidadMedicos)->create();
@@ -54,5 +69,10 @@ class DatabaseSeeder extends Seeder
         factory(Pacientes::class, $cantidadPacientes)->create();
         factory(Usuarios_sistema::class, $cantidadUsuariosSistema)->create();
         factory(Suscripciones::class, $cantidadSuscripciones)->create();
+        factory(Cirugias::class, $cantidadCirugias)->create();
+        factory(Almacenes::class, $cantidadAlmacenes)->create();
+        factory(Farmacias::class, $cantidadFarmacias)->create();
+        factory(Cajas::class, $cantidadCajas)->create();
+        factory(Consultas::class, $cantidadConsultas)->create();
     }
 }

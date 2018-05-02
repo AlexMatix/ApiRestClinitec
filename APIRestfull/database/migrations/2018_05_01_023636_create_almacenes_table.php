@@ -18,7 +18,7 @@ class CreateAlmacenesTable extends Migration
             $table->increments('id');
             $table->string('Nombre');
             $table->string('Direccion');
-            $table->string('Descricion')->nullable();
+            $table->text('Descricion')->nullable();
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('Estado')->unsigned()->default(Almacenes::ACTIVO);
             

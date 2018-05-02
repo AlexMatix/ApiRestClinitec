@@ -20,7 +20,7 @@ class Consultas extends Model
      'Fecha',
      'Costo',
      'idMedico',
-     'idPacinte',
+     'idPaciente',
      'idCentro_medico',
      'Estado'
     ];

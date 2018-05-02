@@ -15,7 +15,6 @@ class Cajas extends Model
     protected $fillable = 
     [
      'id',
-     'Venta',
      'Monto',
      'Fecha',
      'idUsuario_sistema',

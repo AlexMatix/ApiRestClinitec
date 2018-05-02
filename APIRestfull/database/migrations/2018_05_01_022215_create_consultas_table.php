@@ -23,7 +23,7 @@ class CreateConsultasTable extends Migration
             $table->date('Fecha');
             $table->integer('Costo');
             $table->integer('idMedico')->unsigned();
-            $table->integer('idPacinte')->unsigned();
+            $table->integer('idPaciente')->unsigned();
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('Estado')->unsigned()->default(Consultas::ACTIVO);
 
@@ -31,7 +31,7 @@ class CreateConsultasTable extends Migration
             // Se definen las llaves foraneas
 
             $table->foreign('idMedico')->references('id')->on('medicos');
-            $table->foreign('idPacinte')->references('id')->on('pacientes');
+            $table->foreign('idPaciente')->references('id')->on('pacientes');
             $table->foreign('idCentro_medico')->references('id')->on('centro_medico');
         });
     }

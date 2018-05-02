@@ -22,9 +22,9 @@ class CreateFarmaciasTable extends Migration
             $table->string('Descripcion')->nullable();
             $table->integer('Precio')->unsigned();
             $table->integer('Cantidad');
-            $table->integer('Codigo_barras');
+            $table->string('Codigo_barras');
             $table->integer('Lote')->nullable();
-            $table->date('Caducidad');
+            $table->string('Caducidad');
             $table->string('Dosis_precentacion');
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('idAlmacen')->unsigned();

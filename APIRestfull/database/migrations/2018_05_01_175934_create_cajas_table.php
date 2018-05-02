@@ -16,7 +16,6 @@ class CreateCajasTable extends Migration
     {
         Schema::create('cajas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('Venta');
             $table->float('Monto');
             $table->date('Fecha');
             $table->integer('idUsuario_sistema')->unsigned();

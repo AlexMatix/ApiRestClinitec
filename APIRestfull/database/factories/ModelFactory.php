@@ -1,7 +1,12 @@
 <?php
 
+use App\Almacenes;
+use App\Cajas;
 use App\Centro_medico;
+use App\Cirugias;
+use App\Consultas;
 use App\Enfermeras;
+use App\Farmacias;
 use App\Medicos;
 use App\Pacientes;
 use App\Suscripciones;
@@ -134,7 +139,83 @@ $factory->define(Suscripciones::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(Cirugias::class, function (Faker\Generator $faker) {
+    $Centro_medico = Centro_medico::all()->random();
+
+    return [
+        'Nombre'          => $faker->randomElement(['Vesicula','Riñon','Vasectomia','Cerebro','Pulmon']),
+        'Riesgos'         => $faker->randomElement([Cirugias::NINGUNO, Cirugias::POCO, Cirugias::NORMAL, Cirugias::RIESGOSA]),
+        'Costos'          => $faker->numberBetween($min = 200, $max = 400),
+        'Duracion'        => $faker->numberBetween($min = 40, $max = 100),
+        'idCentro_medico' => $Centro_medico->id,
+        'Estado'          => $faker->randomElement([Cirugias::ACTIVA, Cirugias::NO_ACTIVA]),
+    ];
+});
+
+$factory->define(Almacenes::class, function (Faker\Generator $faker) {
+    $Centro_medico = Centro_medico::all()->random();
+
+    return [
+        'Nombre'          => $faker->name,
+        'Direccion'       => $faker->address,
+        'Descricion'      => $faker->text,
+        'idCentro_medico' => $Centro_medico->id,
+        'Estado'          => $faker->randomElement([Almacenes::ACTIVO, Almacenes::NO_ACTIVO]),
+    ];
+});
+
+$factory->define(Farmacias::class, function (Faker\Generator $faker) {
+    $Centro_medico = Centro_medico::all()->random();
+    $Almacen = Almacenes::all()->random();
+
+    return [
+        'Nombre_marca'       => $faker->randomElement(['Genoprasol','Clorox','Aspirina','Buscapina']),
+        'Nombre_compuesto'   => $faker->randomElement(['Penisilina','Paracetamol','Sodio','Mitrozin']),
+        'Precentacion'       => $faker->randomElement(['Gotas','Pastillas','Jarabe','Suspencion','Tabletas']),
+        'Descripcion'        => $faker->text($maxNbChars = 20),
+        'Precio'             => $faker->numberBetween($min = 40, $max = 100),
+        'Cantidad'           => $faker->numberBetween($min = 40, $max = 100),
+        'Codigo_barras'      => str_random(10),
+        'Lote'               => $faker->numberBetween($min = 10, $max = 30),
+        'Caducidad'          => $faker->year($max = 'now'),
+        'Dosis_precentacion' => $faker->numberBetween($min = 50, $max = 500),
+        'idCentro_medico'    => $Centro_medico->id,
+        'idAlmacen'          => $Almacen->id,
+        'Estado'             => $faker->randomElement([Farmacias::EXISTENTE, Farmacias::NO_EXISTENTE]),
+    ];
+});
+
+$factory->define(Cajas::class, function (Faker\Generator $faker) {
+    $Centro_medico = Centro_medico::all()->random();
+    $Paciente      = Pacientes::all()->random();
+    $Usuario       = Usuarios_sistema::all()->random();
+
+    return [
+        'Monto'             => $faker->numberBetween($min = 4000, $max = 10000),
+        'Fecha'             => date("Y-m-d"),
+        'idUsuario_sistema' => $Usuario->id,
+        'idPaciente'        => $Paciente->id,
+        'idCentro_medico'   => $Centro_medico->id,
+        'Estado'            => $faker->randomElement([Cajas::NO_PAGADO, Cajas::PAGADO, Cajas::PAGO_A_PLAZO, Cajas::PAGO_ELIMINADO]),
+    ];
+});
 
 
+$factory->define(Consultas::class, function (Faker\Generator $faker) {
+    $Centro_medico = Centro_medico::all()->random();
+    $Paciente      = Pacientes::all()->random();
+    $Medico        = Medicos::all()->random();
 
-
+    return [
+        'Peso'                 => $faker->numberBetween($min = 20, $max = 100),
+        'Talla'                => $faker->numberBetween($min = 20, $max = 100),
+        'Perimetro_cefalitico' => $faker->numberBetween($min = 20, $max = 100),
+        'Perimetro_Torasico'   => $faker->numberBetween($min = 20, $max = 100),
+        'Fecha'                => date("Y-m-d"),
+        'Costo'                => $faker->numberBetween($min = 500, $max = 1000),
+        'idMedico'             => $Medico->id,
+        'idPaciente'           => $Paciente->id,
+        'idCentro_medico'      => $Centro_medico->id,
+        'Estado'               => $faker->randomElement([Consultas::NO_ACTIVO, Consultas::ACTIVO]),
+    ];
+});
