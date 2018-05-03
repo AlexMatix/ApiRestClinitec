@@ -20,7 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //el parametro only solo permite los metodos de su parametro
 //Route::resource('suscripciones', 'Suscripciones\SuscripcionesController', ['only' => ['index', 'show']]);
 // *************                                 *****************     ***  ['except' => ['create','edit']] excluye los metodos del arreglo
-
+Route::get('breweries', ['middleware' => 'cors', function()
+{
+    return \Response::json(\App\Brewery::with('beers', 'geocode')->paginate(10), 200);
+}]);
 
 Route::resource('suscripciones', 'Suscripciones\SuscripcionesController', ['except' => ['create','edit']]);
 
