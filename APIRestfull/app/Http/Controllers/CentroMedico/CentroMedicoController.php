@@ -14,12 +14,17 @@ class CentroMedicoController extends ApiController
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $usuarios = Centro_medico::where("Estado", "<>", 0)->get();
-        if(empty($usuarios)){
+    {   
+        if(!empty($_GET['tipo'])){
+            $centroMedico = Centro_medico::where("Estado", "<>", 0, 'and', 'Tipo_centro_medico', 'like', $_GET['tipo'])->get();
+        }else{
+            $centroMedico = Centro_medico::where("Estado", "<>", 0)->get();
+        }
+        
+        if(empty($centroMedico)){
             return $this->errorResponse('Datos no encontrados', 404);
         }
-        return $this->showAll($usuarios, 200);
+        return $this->showAll($centroMedico, 200);
     }
 
     
@@ -59,7 +64,30 @@ class CentroMedicoController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $centromedico = Centro_medico::findOrFail($id);
+        $campos = $request->all();
+
+        $centromedico->Nombre = empty($campos['Nombre']) 
+                                        ? $centromedico->Nombre
+                                        : $campos['Nombre'];
+
+        $centromedico->Direccion = empty($campos['Direccion']) 
+                                        ? $centromedico->Direccion
+                                        : $campos['Direccion'];
+
+        $centromedico->Tipo_centro_medico = empty($campos['Tipo_centro_medico']) 
+                                        ? $centromedico->Tipo_centro_medico
+                                        : $campos['Tipo_centro_medico'];
+
+        $centromedico->Estado  = empty($campos['Estado']) 
+                                        ? $centromedico->Estado
+                                        : $campos['Estado'];
+        if ($centromedico->save()){
+            return showOne($centromedico, 201);
+        }
+
+        return errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**

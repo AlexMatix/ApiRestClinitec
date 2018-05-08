@@ -10,10 +10,7 @@ class Centro_medico extends Model
 	CONST ACTIVO    = 1;
     CONST NO_CONFIG = 2;
     
-    CONST CONSULTORIO     = 0;
-    CONST CLINICA         = 1;
-    CONST HOPITAL_BASICO  = 2;
-    CONST HOPITAL_PREMIUM = 3;
+   
 
     protected $fillable = 
     [

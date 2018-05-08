@@ -11,6 +11,11 @@ class Suscripciones extends Model
     CONST ACTIVA 	 = 1;
     CONST SUSPENDIDA = 2;
 
+    CONST CONSULTORIO     = 0;
+    CONST CLINICA         = 1;
+    CONST HOPITAL_BASICO  = 2;
+    CONST HOPITAL_PREMIUM = 3;
+    
     protected $fillable = 
     [
     	'id',

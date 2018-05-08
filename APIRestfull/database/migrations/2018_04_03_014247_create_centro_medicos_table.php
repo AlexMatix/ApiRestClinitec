@@ -18,7 +18,7 @@ class CreateCentroMedicosTable extends Migration
             $table->increments('id');
             $table->string('Nombre',50);
             $table->string('Direccion',70);
-            $table->integer('Tipo_centro_medico');
+            $table->string('Tipo_centro_medico');
             $table->integer('Estado')->unsigned()->default(Centro_medico::NO_CONFIG);
         });
     }
