@@ -1,6 +1,6 @@
 <?php
 
-use App\Usuarios_sistema;
+use App\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,21 +14,21 @@ class CreateUsuariosSistemasTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios_sistema', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             
             $table->increments('id');
-            $table->string('Usuario',30)->unique();
-            $table->string('Password');
-            $table->string('Email', 50)->unique();
+            $table->string('user',30)->unique();
+            $table->string('password');
+            $table->string('email', 50)->unique();
             $table->date('Fecha_registro');
             $table->string('Token_verificacion', 40)->nullable();
-            $table->integer('Verificada')->default(Usuarios_sistema::NO_VERIFICADA)->nullable();
+            $table->integer('Verificada')->default(User::NO_VERIFICADA)->nullable();
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('idMedico')->default(1)->unsigned()->nullable();
             $table->integer('idEnfermera')->default(1)->unsigned()->nullable();
             $table->integer('idPaciente')->default(1)->unsigned()->nullable();
             $table->integer('idTipo_usuario')->default(1)->unsigned();
-            $table->integer('Estado')->unsigned()->default(Usuarios_sistema::ACTIVA);
+            $table->integer('Estado')->unsigned()->default(User::ACTIVA);
 
             //DEFINIMOS LOS CAMPOS QUE SERÄN LLAVES FORANEAS
 
@@ -47,6 +47,6 @@ class CreateUsuariosSistemasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios_sistema');
+        Schema::dropIfExists('users');
     }
 }

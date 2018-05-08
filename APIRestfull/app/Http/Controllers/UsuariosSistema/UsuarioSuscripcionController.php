@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\UsuariosSistema;
 
 use App\Http\Controllers\ApiController;
-use App\Usuarios_sistema;
+use App\User;
 use Illuminate\Http\Request;
 use  Faker\Factory as Faker;
 

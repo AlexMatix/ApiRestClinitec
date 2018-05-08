@@ -11,7 +11,7 @@ use App\Medicos;
 use App\Pacientes;
 use App\Recetas;
 use App\Suscripciones;
-use App\Usuarios_sistema;
+use App\User;
 
 
 /*
@@ -53,7 +53,7 @@ $factory->define(Medicos::class, function (Faker\Generator $faker) {
 
     return [
         'Nombre'           => $faker->lastName,
-        'Apellidos' 		   => $faker->lastName,
+        'Apellidos' 	   => $faker->lastName,
     	'Especialidad'     => $faker->company,
         'Sexo'    	       => $faker->randomElement([Medicos::MALE, Medicos::FEMALE]),
         'Edad' 		       => $faker->numberBetween($min = 20, $max = 40),
@@ -104,22 +104,22 @@ $factory->define(Pacientes::class, function (Faker\Generator $faker) {
 
 
 
-$factory->define(Usuarios_sistema::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
 	static $password;
 
     return [
-        'Usuario' 		      => $faker->username,
-        'Password' 			  => $password ?: $password = bcrypt('secret'),
-        'Email' 			  => $faker->safeEmail, 
+        'user' 		          => $faker->username,
+        'password' 			  => 'secret',
+        'email' 			  => $faker->safeEmail, 
         'Fecha_registro' 	  => $faker->date,
-        'Token_verificacion'  => Usuarios_sistema::generateToken(),
-        'Verificada'		  => $faker->randomElement([Usuarios_sistema::VERIFICADA, Usuarios_sistema::NO_VERIFICADA]),
+        'Token_verificacion'  => User::generateToken(),
+        'Verificada'		  => $faker->randomElement([User::VERIFICADA, User::NO_VERIFICADA]),
         'idCentro_medico'     => $faker->numberBetween($min = 0, $max = 50),
         'idMedico' 		      => $faker->numberBetween($min = 0, $max = 50),
         'idEnfermera'         => $faker->numberBetween($min = 0, $max = 50),
         'idPaciente'          => $faker->numberBetween($min = 0, $max = 50),
-        'idTipo_usuario'      => $faker->randomElement([Usuarios_sistema::SUPERADMIN, Usuarios_sistema::ADMINISTRADOR, Usuarios_sistema::MEDICO, Usuarios_sistema::ENFERMERA, Usuarios_sistema::PACIENTE, Usuarios_sistema::CAJERO]),
-        'Estado'              => $faker->randomElement([Usuarios_sistema::ACTIVA, Usuarios_sistema::NO_ACTIVA]),
+        'idTipo_usuario'      => $faker->randomElement([User::SUPERADMIN, User::ADMINISTRADOR, User::MEDICO, User::ENFERMERA, User::PACIENTE, User::CAJERO]),
+        'Estado'              => $faker->randomElement([User::ACTIVA, User::NO_ACTIVA]),
 
     ];
 });
@@ -189,7 +189,7 @@ $factory->define(Farmacias::class, function (Faker\Generator $faker) {
 $factory->define(Cajas::class, function (Faker\Generator $faker) {
     $Centro_medico = Centro_medico::all()->random();
     $Paciente      = Pacientes::all()->random();
-    $Usuario       = Usuarios_sistema::all()->random();
+    $Usuario       = User::all()->random();
 
     return [
         'Monto'             => $faker->numberBetween($min = 4000, $max = 10000),

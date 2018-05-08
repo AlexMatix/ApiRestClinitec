@@ -25,7 +25,7 @@ class CreateCajasTable extends Migration
 
             //Llave foraneas
 
-            $table->foreign('idUsuario_sistema')->references('id')->on('usuarios_sistema');
+            $table->foreign('idUsuario_sistema')->references('id')->on('users');
             $table->foreign('idPaciente')->references('id')->on('pacientes');
             $table->foreign('idCentro_medico')->references('id')->on('centro_medico');
 

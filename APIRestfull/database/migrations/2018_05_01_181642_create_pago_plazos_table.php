@@ -27,7 +27,7 @@ class CreatePagoPlazosTable extends Migration
             $table->integer('Estado')->unsigned()->default(Pago_plazos::NO_PAGADO);
 
             //LLaves foraneas
-            $table->foreign('idUsuario_sistema')->references('id')->on('usuarios_sistema');
+            $table->foreign('idUsuario_sistema')->references('id')->on('users');
             $table->foreign('idCaja')->references('id')->on('cajas');
             $table->foreign('idCentro_medico')->references('id')->on('centro_medico');
         });

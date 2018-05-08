@@ -16,19 +16,15 @@ class SuscripcionesController extends ApiController
      */
     public function index()
     {
-        $suscripciones = Suscripciones::all();
+        if(!empty($_GET['tipo'])){
+            $suscripciones = Suscripciones::where("Estado", "<>", 0, 'and', 'Tipo_suscripcion', '=', $_GET['tipo'])->get();
+        }else{
+            $suscripciones = Suscripciones::where("Estado", "<>", 0, 'and')->get();
+        }
         return response()->json(['data' => $suscripciones], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.

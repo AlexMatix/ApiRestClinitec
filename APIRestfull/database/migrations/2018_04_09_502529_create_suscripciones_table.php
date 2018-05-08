@@ -27,7 +27,7 @@ class CreateSuscripcionesTable extends Migration
 
             //Definir llaves foraneas corrspondientes a las tablas.
             $table->foreign('idCentro_medico')->references('id')->on('centro_medico');
-            $table->foreign('idUsuarios_sistema')->references('id')->on('usuarios_sistema');
+            $table->foreign('idUsuarios_sistema')->references('id')->on('users');
             
         });
     }

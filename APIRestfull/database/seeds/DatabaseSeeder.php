@@ -14,7 +14,7 @@ use App\Pacientes;
 use App\Recetas;
 use App\Suscripciones;
 use App\Tipo_usuario;
-use App\Usuarios_sistema;
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         Pacientes::truncate();
         Suscripciones::truncate();
         Tipo_usuario::truncate();
-        Usuarios_sistema::truncate();
+        User::truncate();
         Cirugias::truncate();
         Almacenes::truncate();
         Farmacias::truncate();
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         factory(Medicos::class, $cantidadMedicos)->create();
         factory(Enfermeras::class, $cantidadEnfermeras)->create();
         factory(Pacientes::class, $cantidadPacientes)->create();
-        factory(Usuarios_sistema::class, $cantidadUsuariosSistema)->create();
+        factory(User::class, $cantidadUsuariosSistema)->create();
         factory(Suscripciones::class, $cantidadSuscripciones)->create();
         factory(Cirugias::class, $cantidadCirugias)->create();
         factory(Almacenes::class, $cantidadAlmacenes)->create();

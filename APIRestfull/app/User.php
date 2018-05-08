@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Usuarios_sistema extends Model
+class User extends Model
 {
     //
     CONST ACTIVA          = 1;
@@ -21,9 +21,9 @@ class Usuarios_sistema extends Model
     protected $fillable = 
     [
         'id',
-        'Usuario',
-        'Password',
-        'Email',
+        'user',
+        'password',
+        'email',
         'Fecha_registro',
         'Token_verificacion',
         'Verificada',
@@ -34,7 +34,7 @@ class Usuarios_sistema extends Model
         'Estado'
 
     ];
-    protected $table = 'usuarios_sistema';
+    protected $table = 'users';
     public $timestamps = false;
 
     public static function generateToken(){
