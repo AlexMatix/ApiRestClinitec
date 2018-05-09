@@ -13,3 +13,5 @@ insert into camas_x_piso(Piso, Seccion, Descripcion, ocupado, idCentro_medico, E
 insert into camas_x_piso(Piso, Seccion, Descripcion, ocupado, idCentro_medico, Estado) values ("Segundo piso", "niños", 	"Cama con oxgeno", 1, 2, 0);
 insert into camas_x_piso(Piso, Seccion, Descripcion, ocupado, idCentro_medico, Estado) values ("tercero piso", "Intensiva", "Cama con oxgeno", 0, 1, 1);
 insert into camas_x_piso(Piso, Seccion, Descripcion, ocupado, idCentro_medico, Estado) values ("Segundo piso", "Cancer", 	"Cama con oxgeno", 1, 3, 1);
+
+

@@ -18,7 +18,7 @@ class CreateCamasXPisosTable extends Migration
             $table->string('Piso',20);
             $table->string('Seccion',50);
             $table->string('Descripcion',250)->nullable();
-            $table->integer('ocupado');
+            $table->integer('Ocupado');
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('Estado')->unsigned();
 

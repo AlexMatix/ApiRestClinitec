@@ -13,7 +13,7 @@ class Enfermeras extends Model
     protected $fillable = [
     	'id',
     	'Nombre',
-    	'Apellidos',
+    	'Apellido',
     	'Sexo',
     	'Edad',
     	'Cedula',

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\UsuariosSistema;
 
 use App\Http\Controllers\ApiController;
-use App\Usuarios_sistema;
+use App\User;
 use Illuminate\Http\Request;
 
 class UsuariosSistemaController extends ApiController
@@ -15,7 +15,7 @@ class UsuariosSistemaController extends ApiController
      */
     public function index()
     {
-       $usuarios = Usuarios_sistema::where("Estado", "<>", 0)->get();
+       $usuarios = User::where("Estado", "<>", 0)->get();
        if(!empty($usuarios)){
             return $this->showAll($usuarios);
        }else{
@@ -33,7 +33,7 @@ class UsuariosSistemaController extends ApiController
     public function store(Request $request)
     {
       $campos     = $request->all();
-      $newUsuario = Usuarios_sistema::create($campos);
+      $newUsuario = User::create($campos);
       //201 = respuesta de success register
       return $this->showAll($newUsuario);
     }
@@ -46,7 +46,7 @@ class UsuariosSistemaController extends ApiController
      */
     public function show($id){
         
-        $usuarios = Usuarios_sistema::findOrFail($id);
+        $usuarios = User::findOrFail($id);
         
 
         return $this->showOne($usuarios);
@@ -62,7 +62,7 @@ class UsuariosSistemaController extends ApiController
      */
    public function update(Request $request, $id){
 
-      $usuario = Usuarios_sistema::findOrFail($id);
+      $usuario = User::findOrFail($id);
    
       $usuario->Usuario = $request->has('Usuario') ? $request->Usuario : $usuario->Usuario;
       $usuario->Password = $request->has('Password') ? $request->Password : $usuario->Password;
@@ -82,8 +82,8 @@ class UsuariosSistemaController extends ApiController
      */
     public function destroy($id){
 
-      $usuario = Usuarios_sistema::findOrFail($id);
-      $usuario->Estado = Usuarios_sistema::NO_ACTIVA;
+      $usuario = User::findOrFail($id);
+      $usuario->Estado = User::NO_ACTIVA;
 
       if(!$usuario->save()){
          return $this->errorResponse('No se pudieron eliminar los datos', 404);

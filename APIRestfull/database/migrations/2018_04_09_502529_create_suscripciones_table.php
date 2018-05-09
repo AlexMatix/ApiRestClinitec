@@ -16,7 +16,7 @@ class CreateSuscripcionesTable extends Migration
     {
         Schema::create('suscripciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Tipo_suscripcion');
+            $table->integer('Tipo_suscripcion');
             $table->string('Nombre_persona');
             $table->string('Apellidos_persona');
             $table->date('Fecha_inscripcion');

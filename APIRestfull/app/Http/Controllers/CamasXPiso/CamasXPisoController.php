@@ -32,7 +32,10 @@ class CamasXPisoController extends ApiController
      */
     public function store(Request $request)
     {
-        
+        $data = $request->all();
+        $almacen = Almacenes::create($data); 
+
+        return $this->showOne($almacen, 200);
     }
 
     /**
@@ -56,7 +59,38 @@ class CamasXPisoController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $cama = Camas_x_piso::findOrFail($id);
+        
+        $campos = $request->all();
+
+        $cama->Piso    = empty($campos['Piso']) 
+                                        ? $cama->Piso
+                                        : $campos['Piso'];
+
+        $cama->Seccion = empty($campos['Seccion']) 
+                                        ? $cama->Seccion
+                                        : $campos['Seccion'];
+
+        $cama->Descripcion = empty($campos['Descripcion']) 
+                                        ? $cama->Descripcion
+                                        : $campos['Descripcion'];
+
+        $cama->Ocupado = empty($campos['Ocupado']) 
+                                        ? $cama->Ocupado
+                                        : $campos['Ocupado'];
+
+       $cama->idCentro_medico = empty($campos['idCentro_medico']) 
+                                        ? $cama->idCentro_medico
+                                        : $campos['idCentro_medico'];
+
+        $cama->Estado     = empty($campos['Estado']) 
+                                        ? $cama->Estado
+                                        : $campos['Estado'];
+        if ($cama->save()){
+            return $this->showOne($cama, 201);
+        }
+
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**

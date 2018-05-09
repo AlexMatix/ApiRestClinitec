@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Cajas;
 
+use App\Cajas;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class CajasController extends Controller
+class CajasController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +15,14 @@ class CajasController extends Controller
      */
     public function index()
     {
-        //
+       $caja = Cajas::where("Estado", "<>", 0)->get();
+        
+        if(empty($caja)){
+            return $this->errorResponse('Datos no encontrados', 404);
+        }
+        return $this->showAll($caja, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +32,11 @@ class CajasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+      $data = $request->all();
+      $cajas = Cajas::create($data); 
+
+        return $this->showOne($cajas, 200);
     }
 
     /**
@@ -44,21 +45,12 @@ class CajasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cajas $caja)
     {
-        //
+        return $this->showOne($caja, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +61,37 @@ class CajasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $caja = Cajas::findOrFail($id);
+        $campos = $request->all();
+
+        $caja->Monto  = empty($campos['Monto']) 
+                                        ? $caja->Monto
+                                        : $campos['Monto'];
+
+        $caja->Fecha = empty($campos['Fecha']) 
+                                        ? $caja->Fecha
+                                        : $campos['Fecha'];
+
+        $caja->idUsuario_sistema = empty($campos['idUsuario_sistema']) 
+                                        ? $caja->idUsuario_sistema
+                                        : $campos['idUsuario_sistema'];
+ 
+        $caja->idPaciente = empty($campos['idPaciente']) 
+                                        ? $caja->idPaciente
+                                        : $campos['idPaciente'];
+
+        $caja->idCentro_medico = empty($campos['idCentro_medico']) 
+                                        ? $caja->idCentro_medico
+                                        : $campos['idCentro_medico'];
+
+        $caja->Estado     = empty($campos['Estado']) 
+                                        ? $caja->Estado
+                                        : $campos['Estado'];
+        if ($caja->save()){
+            return $this->showOne($caja, 201);
+        }
+
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**
@@ -78,8 +100,15 @@ class CajasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cajas $caja)
     {
-        //
+    
+      $caja->Estado = Cajas::PAGO_ELIMINADO;
+
+      if(!$caja->save()){
+         return $this->errorResponse('No se pudieron eliminar los datos', 404);
+      }
+
+      return $this->succesMessaje('Eliminado con exito', 201);
     }
 }

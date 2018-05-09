@@ -59,7 +59,45 @@ class EnfermerasController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $enfermera = Enfermeras::findOrFail($id);
+        $campos = $request->all();
+
+        $enfermera->Nombre    = empty($campos['Nombre']) 
+                                        ? $enfermera->Nombre
+                                        : $campos['Nombre'];
+
+        $enfermera->Apellido = empty($campos['Apellido']) 
+                                        ? $enfermera->Apellido
+                                        : $campos['Apellido'];
+
+        $enfermera->Sexo = empty($campos['Sexo']) 
+                                        ? $enfermera->Sexo
+                                        : $campos['Sexo'];
+
+        $enfermera->Edad = empty($campos['Edad']) 
+                        ? $enfermera->Edad
+                        : $campos['Edad'];
+
+        $enfermera->Cedula = empty($campos['Cedula']) 
+                        ? $enfermera->Cedula
+                        : $campos['Cedula'];
+
+        $enfermera->Direccion = empty($campos['Direccion']) 
+                            ? $enfermera->Direccion
+                            : $campos['Direccion'];
+
+        $enfermera->idCentro_medico = empty($campos['idCentro_medico']) 
+                            ? $enfermera->idCentro_medico
+                            : $campos['idCentro_medico'];
+
+        $enfermera->Estado     = empty($campos['Estado']) 
+                            ? $enfermera->Estado
+                            : $campos['Estado'];
+        if ($enfermera->save()){
+            return $this->showOne($enfermera, 201);
+        }
+
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**

@@ -15,8 +15,10 @@ class CentroMedicoController extends ApiController
      */
     public function index()
     {   
+
         if(!empty($_GET['tipo'])){
-            $centroMedico = Centro_medico::where("Estado", "<>", 0, 'and', 'Tipo_centro_medico', 'like', $_GET['tipo'])->get();
+            $tipo = $_GET['tipo'];
+            $centroMedico = Centro_medico::where([["Tipo_centro_medico", "=", "$tipo"],["Estado", "<>", 0]])->get();
         }else{
             $centroMedico = Centro_medico::where("Estado", "<>", 0)->get();
         }
@@ -84,10 +86,10 @@ class CentroMedicoController extends ApiController
                                         ? $centromedico->Estado
                                         : $campos['Estado'];
         if ($centromedico->save()){
-            return showOne($centromedico, 201);
+            return $this->showOne($centromedico, 201);
         }
 
-        return errorResponse("Ocurrio algún error intentelo mas tarde", 500);
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**

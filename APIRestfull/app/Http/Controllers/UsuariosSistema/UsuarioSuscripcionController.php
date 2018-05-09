@@ -17,19 +17,19 @@ class UsuarioSuscripcionController extends ApiController
     	$date = date("Y-m-d");
         
 		$campos  = array(
-			'Usuario' 			 => $faker->lastName, 
-			'Password' 			 => $faker->password, 
-			'Email' 			 => $Email, 
+			'user'  			 => $faker->lastName, 
+			'password' 			 => $faker->password, 
+			'email' 			 => $Email, 
 			'Fecha_registro' 	 => $date, 
-			'Token_verificacion' => Usuarios_sistema::generateToken(), 
-			'Verificada' 		 => Usuarios_sistema::NO_VERIFICADA, 
+			'Token_verificacion' => User::generateToken(), 
+			'Verificada' 		 => User::NO_VERIFICADA, 
 			'idCentro_medico' 	 => $idCentroMedico, 
 			'idMedico' 			 => 1, 	
 			'idEnfermera' 		 => 1, 
 			'idPaciente' 	     => 1, 
-			'idTipo_usuario' 	 => Usuarios_sistema::SUPERADMIN);
+			'idTipo_usuario' 	 => User::SUPERADMIN);
 
-		$newUsuarioForSuscritor = Usuarios_sistema::create($campos);        
+		$newUsuarioForSuscritor = User::create($campos);        
 
         return $newUsuarioForSuscritor;
 

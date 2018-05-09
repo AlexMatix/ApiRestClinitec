@@ -43,5 +43,13 @@ Route::resource('camas', 'CamasXPiso\CamasXPisoController', ['except' => ['creat
 
 Route::resource('tipo-usuario', 'TipoUsuario\TipoUsuarioController', ['except' => ['create','edit']]);
 
+Route::resource('almacenes', 'Almacenes\AlmacenesController', ['except' => ['create','edit']]);
+
+Route::resource('cajas', 'Cajas\CajasController', ['except' => ['create','edit']]);
+
+Route::resource('cirugias', 'Cirugias\CirugiasController', ['except' => ['create','edit']]);
+
+Route::resource('farmacias', 'Farmacia\FarmaciaController', ['except' => ['create','edit']]);
+
 
 

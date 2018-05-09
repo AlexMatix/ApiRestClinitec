@@ -17,9 +17,10 @@ class SuscripcionesController extends ApiController
     public function index()
     {
         if(!empty($_GET['tipo'])){
-            $suscripciones = Suscripciones::where("Estado", "<>", 0, 'and', 'Tipo_suscripcion', '=', $_GET['tipo'])->get();
+            $tipo = $_GET['tipo'];
+            $suscripciones = Suscripciones::where([["Tipo_suscripcion", "=", "$tipo"], ["Estado", "<>", 0]])->get();
         }else{
-            $suscripciones = Suscripciones::where("Estado", "<>", 0, 'and')->get();
+            $suscripciones = Suscripciones::where("Estado", "<>", 0)->get();
         }
         return response()->json(['data' => $suscripciones], 200);
     }
@@ -46,7 +47,9 @@ class SuscripcionesController extends ApiController
         $newSuscripcion->Tipo_suscripcion   = $campos['Tipo_suscripcion'];
         $newSuscripcion->Nombre_persona     = $campos['Nombre_persona'];
         $newSuscripcion->Apellidos_persona  = $campos['Apellidos_persona'];
-        $newSuscripcion->Fecha_inscripcion  = $campos['Fecha_inscripcion'];
+        $newSuscripcion->Fecha_inscripcion  = !empty($campos['Fecha_inscripcion']) 
+                                            ? $campos['Fecha_inscripcion']
+                                            : date("Y-m-d");
         $newSuscripcion->Cedula             = $campos['Cedula'];
         $newSuscripcion->idCentro_medico    = $campos['idCentro_medico'];
         $newSuscripcion->idUsuarios_sistema = $usuario->id;

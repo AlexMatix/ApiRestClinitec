@@ -11,6 +11,7 @@ class User extends Model
     CONST NO_ACTIVA       = 0;
     CONST VERIFICADA      = 1;
     CONST NO_VERIFICADA   = 0;
+    
     CONST SUPERADMIN      = 1;    
     CONST ADMINISTRADOR   = 2;
     CONST MEDICO          = 3;

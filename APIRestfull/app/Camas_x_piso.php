@@ -18,7 +18,7 @@ class Camas_x_piso extends Model
  		'Piso',
  		'Seccion',
  		'Descripcion',
- 		'ocupado',
+ 		'Ocupado',
  		'idCentro_medico',
  		'Estado'
  	];

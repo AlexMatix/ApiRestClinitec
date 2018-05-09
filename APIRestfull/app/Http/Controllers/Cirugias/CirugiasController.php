@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Cirugias;
 
+use App\Cirugias;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class CirugiasController extends Controller
+class CirugiasController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +15,15 @@ class CirugiasController extends Controller
      */
     public function index()
     {
-        //
+        $cirugia = Cirugias::where("Estado", "<>", 0)->get();
+        
+        if(empty($cirugia)){
+            return $this->errorResponse('Datos no encontrados', 404);
+        }
+        return $this->showAll($cirugia, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +33,11 @@ class CirugiasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $almacen = Cirugias::create($data); 
+
+        return $this->showOne($almacen, 200);
+     
     }
 
     /**
@@ -44,22 +46,11 @@ class CirugiasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cirugias $cirugia)
     {
-        //
+        return $this->showOne($cirugia, 200);
+        
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -69,7 +60,38 @@ class CirugiasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $cirugia = Cirugias::findOrFail($id);
+        $campos  = $request->all();
+
+        $cirugia->Nombre    = empty($campos['Nombre']) 
+                                        ? $cirugia->Nombre
+                                        : $campos['Nombre'];
+
+        $cirugia->Riesgos = empty($campos['Riesgos']) 
+                                        ? $cirugia->Riesgos
+                                        : $campos['Riesgos'];
+
+        $cirugia->Costos = empty($campos['Costos']) 
+                                        ? $cirugia->Costos
+                                        : $campos['Costos'];
+
+        $cirugia->Duracion = empty($campos['Duracion']) 
+                                        ? $cirugia->Duracion
+                                        : $campos['Duracion'];
+                                        
+        $cirugia->idCentro_medico = empty($campos['idCentro_medico']) 
+                                        ? $cirugia->idCentro_medico
+                                        : $campos['idCentro_medico'];
+
+        $cirugia->Estado     = empty($campos['Estado']) 
+                                        ? $cirugia->Estado
+                                        : $campos['Estado'];
+        if ($cirugia->save()){
+            return $this->showOne($cirugia, 201);
+        }
+
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**
@@ -78,8 +100,14 @@ class CirugiasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cirugias $cirugia)
     {
-        //
+        $cirugia->Estado = Cirugias::NO_ACTIVA;
+
+      if(!$cirugia->save()){
+         return $this->errorResponse('No se pudieron eliminar los datos', 404);
+      }
+
+      return $this->succesMessaje('Eliminado con exito', 201);
     }
 }
