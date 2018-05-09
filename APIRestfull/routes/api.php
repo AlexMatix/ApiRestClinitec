@@ -37,7 +37,7 @@ Route::resource('pacientes', 'Pacientes\PacientesController', ['except' => ['cre
 
 Route::resource('usuarios', 'UsuariosSistema\UsuariosSistemaController', ['except' => ['create','edit']]);
 
-//Route::resource('infrestructura', 'InfrestructuraCentroMedico\InfrestructuraCentroMedicoController');
+Route::resource('infrestructura', 'InfrestructuraCentroMedico\InfrestructuraCentroMedicoController');
 
 Route::resource('camas', 'CamasXPiso\CamasXPisoController', ['except' => ['create','edit']]);
 
@@ -49,7 +49,10 @@ Route::resource('cajas', 'Cajas\CajasController', ['except' => ['create','edit']
 
 Route::resource('cirugias', 'Cirugias\CirugiasController', ['except' => ['create','edit']]);
 
-Route::resource('farmacias', 'Farmacia\FarmaciaController', ['except' => ['create','edit']]);
+Route::resource('indicaciones', 'Indicaciones\IndicacionesController', ['except' => ['create','edit']]);
+
+Route::resource('pago-plazos', 'PagoPlazos\PagoPlazosController', ['except' => ['create','edit']]);
+
 
 
 

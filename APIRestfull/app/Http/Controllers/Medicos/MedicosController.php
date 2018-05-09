@@ -59,7 +59,49 @@ class MedicosController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $medico = Medicos::findOrFail($id);
+        $campos = $request->all();
+
+        $medico->Nombre    = empty($campos['Nombre']) 
+                                        ? $medico->Nombre
+                                        : $campos['Nombre'];
+
+        $medico->Apellidos = empty($campos['Apellidos']) 
+                                        ? $medico->Apellidos
+                                        : $campos['Apellidos'];
+
+        $medico->Especialidad = empty($campos['Especialidad']) 
+                                        ? $medico->Especialidad
+                                        : $campos['Especialidad'];
+
+        $medico->Sexo     = empty($campos['Sexo']) 
+                                        ? $medico->Sexo
+                                        : $campos['Sexo'];
+
+        $medico->Edad    = empty($campos['Edad']) 
+                                        ? $medico->Edad
+                                        : $campos['Edad'];
+
+        $medico->Cedula = empty($campos['Cedula']) 
+                                        ? $medico->Cedula
+                                        : $campos['Cedula'];
+
+        $medico->Direccion = empty($campos['Direccion']) 
+                                        ? $medico->Direccion
+                                        : $campos['Direccion'];
+        
+        $medico->idCentro_medico = empty($campos['idCentro_medico']) 
+                                        ? $medico->idCentro_medico
+                                        : $campos['idCentro_medico'];
+
+        $medico->Estado     = empty($campos['Estado']) 
+                                        ? $medico->Estado
+                                        : $campos['Estado'];
+        if ($medico->save()){
+            return $this->showOne($medico, 201);
+        }
+
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**

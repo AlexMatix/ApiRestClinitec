@@ -58,7 +58,52 @@ class PacientesController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $paciente = Pacientes::findOrFail($id);
+        $campos = $request->all();
+
+        $paciente->Nombre    = empty($campos['Nombre']) 
+                                        ? $paciente->Nombre
+                                        : $campos['Nombre'];
+
+        $paciente->Apellidos = empty($campos['Apellidos']) 
+                                        ? $paciente->Apellidos
+                                        : $campos['Apellidos'];
+
+        $paciente->Telefono = empty($campos['Telefono']) 
+                                        ? $paciente->Telefono
+                                        : $campos['Telefono'];
+        $paciente->Sexo    = empty($campos['Sexo']) 
+                                        ? $paciente->Sexo
+                                        : $campos['Sexo'];
+
+        $paciente->Edad = empty($campos['Edad']) 
+                                        ? $paciente->Edad
+                                        : $campos['Edad'];
+
+        $paciente->Direccion = empty($campos['Direccion']) 
+                                        ? $paciente->Direccion
+                                        : $campos['Direccion'];
+                                        
+        $paciente->Tipo_sangre    = empty($campos['Tipo_sangre']) 
+                                        ? $paciente->Tipo_sangre
+                                        : $campos['Tipo_sangre'];
+
+        $paciente->Fecha_inscripcion = empty($campos['Fecha_inscripcion']) 
+                                        ? $paciente->Fecha_inscripcion
+                                        : $campos['Fecha_inscripcion'];
+
+        $paciente->idCentro_medico = empty($campos['idCentro_medico']) 
+                                        ? $paciente->idCentro_medico
+                                        : $campos['idCentro_medico'];
+
+        $paciente->Estado     = empty($campos['Estado']) 
+                                        ? $paciente->Estado
+                                        : $campos['Estado'];
+        if ($paciente->save()){
+            return $this->showOne($paciente, 201);
+        }
+
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**
