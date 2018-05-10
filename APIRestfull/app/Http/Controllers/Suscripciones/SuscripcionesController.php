@@ -16,7 +16,7 @@ class SuscripcionesController extends ApiController
      */
     public function index()
     {
-        if(!empty($_GET['tipo'])){
+        if(isset($_GET['tipo'])){
             $tipo = $_GET['tipo'];
             $suscripciones = Suscripciones::where([["Tipo_suscripcion", "=", "$tipo"], ["Estado", "<>", 0]])->get();
         }else{

@@ -16,7 +16,7 @@ class CentroMedicoController extends ApiController
     public function index()
     {   
 
-        if(!empty($_GET['tipo'])){
+        if(isset($_GET['tipo'])){
             $tipo = $_GET['tipo'];
             $centroMedico = Centro_medico::where([["Tipo_centro_medico", "=", "$tipo"],["Estado", "<>", 0]])->get();
         }else{

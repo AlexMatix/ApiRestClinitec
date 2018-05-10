@@ -53,6 +53,16 @@ Route::resource('indicaciones', 'Indicaciones\IndicacionesController', ['except'
 
 Route::resource('pago-plazos', 'PagoPlazos\PagoPlazosController', ['except' => ['create','edit']]);
 
+Route::resource('recetas', 'Recetas\RecetasController', ['except' => ['create','edit']]);
+
+Route::resource('vacunas', 'Vacunas\vacunasController', ['except' => ['create','edit']]);
+
+Route::resource('vacunas-paciente', 'VacunasPaciente\vacunasPacienteController', ['except' => ['create','edit']]);
+
+Route::resource('citas', 'CitasAgendadas\CitasAgendadasController', ['except' => ['create','edit']]);
+
+Route::resource('historia', 'HistoriaClinica\HistoriaClinicaController', ['except' => ['create','edit']]);
+
 
 
 

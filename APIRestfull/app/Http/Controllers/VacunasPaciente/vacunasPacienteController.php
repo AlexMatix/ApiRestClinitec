@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\VacunasPaciente;
 
+use App\Http\Controllers\ApiController;
+use App\Vacunas_x_paciente;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class vacunasPacienteController extends Controller
+class vacunasPacienteController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +15,14 @@ class vacunasPacienteController extends Controller
      */
     public function index()
     {
-        //
+        $vacuna = Vacunas_x_paciente::where("Estado", "<>", 0)->get();
+        
+        if(empty($vacuna)){
+            return $this->errorResponse('Datos no encontrados', 404);
+        }
+        return $this->showAll($vacuna, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +32,11 @@ class vacunasPacienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $vacuna = Vacunas_x_paciente::create($data); 
+
+        return $this->showOne($vacuna, 200);
+
     }
 
     /**
@@ -45,20 +46,11 @@ class vacunasPacienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $vacuna = Vacunas_x_paciente::findOrFail($id);
+        return $this->showOne($vacuna, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +61,30 @@ class vacunasPacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $vacuna = Vacunas_x_paciente::findOrFail($id);
+        $campos = $request->all();
+
+        $vacuna->idPaciente    = empty($campos['idPaciente']) 
+                                        ? $vacuna->idPaciente
+                                        : $campos['idPaciente'];
+
+        $vacuna->idConsulta = empty($campos['idConsulta']) 
+                                        ? $vacuna->idConsulta
+                                        : $campos['idConsulta'];
+
+        $vacuna->idCentro_medico = empty($campos['idCentro_medico']) 
+                                        ? $vacuna->idCentro_medico
+                                        : $campos['idCentro_medico'];
+                                        
+        $vacuna->Estado     = empty($campos['Estado']) 
+                                        ? $vacuna->Estado
+                                        : $campos['Estado'];
+        if ($vacuna->save()){
+            return $this->showOne($vacuna, 201);
+        }
+
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**
@@ -80,6 +95,15 @@ class vacunasPacienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+      $vacuna =  Vacunas_x_paciente::findOrFail($id);
+
+      $vacuna->Estado = Vacunas_x_paciente::NO_ACTIVO;
+
+      if(!$vacuna->save()){
+         return $this->errorResponse('No se pudieron eliminar los datos', 404);
+      }
+
+      return $this->succesMessaje('Eliminado con exito', 201);
     }
 }
