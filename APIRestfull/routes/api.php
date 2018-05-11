@@ -76,3 +76,5 @@ Route::resource('urgencias', 'Urgencias\UrgenciasController', ['except' => ['cre
 
 
 
+
+

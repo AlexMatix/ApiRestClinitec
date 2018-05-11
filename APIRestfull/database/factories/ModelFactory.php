@@ -108,7 +108,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 	static $password;
 
     return [
-        'user' 		          => $faker->username,
+        'user' 		          => $faker->safeEmail,
         'password' 			  => 'secret',
         'email' 			  => $faker->safeEmail, 
         'Fecha_registro' 	  => $faker->date,

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Medicos;
 
 use App\Http\Controllers\ApiController;
 use App\Medicos;
-use App\Traits\showOne;
 use Illuminate\Http\Request;
 
 class MedicosController extends ApiController
