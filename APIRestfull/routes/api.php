@@ -61,7 +61,17 @@ Route::resource('vacunas-paciente', 'VacunasPaciente\vacunasPacienteController',
 
 Route::resource('citas', 'CitasAgendadas\CitasAgendadasController', ['except' => ['create','edit']]);
 
+Route::resource('cirugia-paciente', 'CirugiasPaciente\CirugiasPacienteController', ['except' => ['create','edit']]);
+
 Route::resource('historia', 'HistoriaClinica\HistoriaClinicaController', ['except' => ['create','edit']]);
+
+Route::resource('ingreso', 'Ingresos\IngresosController', ['except' => ['create','edit']]);
+
+Route::resource('notas', 'Notas\NotasController', ['except' => ['create','edit']]);
+
+Route::resource('traslados', 'Traslados\TrasladosController', ['except' => ['create','edit']]);
+
+Route::resource('urgencias', 'Urgencias\UrgenciasController', ['except' => ['create','edit']]);
 
 
 
