@@ -73,6 +73,8 @@ Route::resource('traslados', 'Traslados\TrasladosController', ['except' => ['cre
 
 Route::resource('urgencias', 'Urgencias\UrgenciasController', ['except' => ['create','edit']]);
 
+Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
+
 
 
 

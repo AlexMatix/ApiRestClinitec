@@ -15,3 +15,14 @@ insert into camas_x_piso(Piso, Seccion, Descripcion, ocupado, idCentro_medico, E
 insert into camas_x_piso(Piso, Seccion, Descripcion, ocupado, idCentro_medico, Estado) values ("Segundo piso", "Cancer", 	"Cama con oxgeno", 1, 3, 1);
 
 
+/* PEDIR TOKEN DE VERIFICACION */
+
+Client ID: 3
+Client secret: 1H7rmlQN9PepI4Ha0ZeVnVOK3ScSh5wnAgzT6st3
+
+
+**** METODO POST CLIENT CREDENTIALS****
+
+grant_type client_credentials
+client_id  3
+client_secret 1H7rmlQN9PepI4Ha0ZeVnVOK3ScSh5wnAgzT6st3

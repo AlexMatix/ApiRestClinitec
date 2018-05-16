@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Model
 {
+
+    use HasApiTokens;
     //
     CONST ACTIVA          = 1;
     CONST NO_ACTIVA       = 0;
