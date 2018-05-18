@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class IngresosController extends ApiController
 {
+
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
+
+
    public function index()
     {
         $ingreso = Ingresos::where("Estado", "<>", 0)->get();

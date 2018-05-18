@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class FarmaciaController extends ApiController
 {
     
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
+
     public function index()
     {
         $farmacia = Farmacias::where("Estado", "<>", 0)->get();

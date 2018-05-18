@@ -2,13 +2,16 @@
 
 namespace App;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Model
 {
 
-    use HasApiTokens;
+    use HasApiTokens, Notifiable, Authenticatable, Authorizable;
     //
     CONST ACTIVA          = 1;
     CONST NO_ACTIVA       = 0;
@@ -38,7 +41,7 @@ class User extends Model
         'Estado'
 
     ];
-    protected $table = 'users';
+    //protected $table = 'user';
     public $timestamps = false;
 
     public static function generateToken(){

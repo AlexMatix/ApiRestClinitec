@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 
 class CamasXPisoController extends ApiController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
+
     public function index()
     {
        $camas = Camas_x_piso::where("Estado", "<>", 0)->get();

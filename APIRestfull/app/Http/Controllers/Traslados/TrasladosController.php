@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class TrasladosController extends ApiController
 {
+
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
     public function index()
     {
         $traslado = Traslados::where("Estado", "<>", 0)->get();

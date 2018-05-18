@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 
 class MedicosController extends ApiController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+    public function __construct(){
+        parent::__construct();
+    }
+
+
     public function index()
     {
         $medicos = Medicos::where("Estado", "<>", 0)->get();

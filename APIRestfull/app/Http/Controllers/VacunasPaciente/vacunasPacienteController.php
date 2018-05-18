@@ -8,11 +8,12 @@ use Illuminate\Http\Request;
 
 class vacunasPacienteController extends ApiController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
     public function index()
     {
         $vacuna = Vacunas_x_paciente::where("Estado", "<>", 0)->get();

@@ -17,9 +17,9 @@ class CreateUsuariosSistemasTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             
             $table->increments('id');
-            $table->string('user',30)->unique();
+            $table->string('user')->unique();
             $table->string('password');
-            $table->string('email', 50)->unique();
+            $table->string('email')->unique();
             $table->date('Fecha_registro');
             $table->string('Token_verificacion', 40)->nullable();
             $table->integer('Verificada')->default(User::NO_VERIFICADA)->nullable();

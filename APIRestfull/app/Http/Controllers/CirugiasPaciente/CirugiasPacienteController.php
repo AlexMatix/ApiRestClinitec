@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class CirugiasPacienteController extends ApiController
 {
+
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
+
     public function index()
     {
         $cirugia = Cirugias_x_paciente::where("Estado", "<>", 0)->get();

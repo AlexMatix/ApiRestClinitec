@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class RecetasController extends ApiController
 {
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+    
     public function index()
     {
         $receta = Recetas::where("Estado", "<>", 0)->get();

@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class IndicacionesController extends ApiController
 {
+
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
+
      public function index()
     {
         $indicacion = Indicaciones_medicas::where("Estado", "<>", 0)->get();

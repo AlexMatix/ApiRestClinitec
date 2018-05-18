@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 
 class EnfermerasController extends ApiController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
+
     public function index()
     {
         $enfermeras = Enfermeras::where("Estado", "<>", 0)->get();

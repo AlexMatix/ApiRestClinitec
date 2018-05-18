@@ -109,7 +109,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 
     return [
         'user' 		          => $email = $faker->safeEmail,
-        'password' 			  => 'secret',
+        'password' 			  => $password ?: $password = bcrypt('secret'),//'secret',
         'email' 			  => $email, 
         'Fecha_registro' 	  => $faker->date,
         'Token_verificacion'  => User::generateToken(),

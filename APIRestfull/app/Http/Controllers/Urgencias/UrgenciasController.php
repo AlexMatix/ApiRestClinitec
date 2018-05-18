@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class UrgenciasController extends ApiController
 {
+    public function __construct(){
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
    public function index()
     {
         $urgencia = Urgencias::where("Estado", "<>", 0)->get();
