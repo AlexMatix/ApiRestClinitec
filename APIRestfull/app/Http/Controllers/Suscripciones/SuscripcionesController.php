@@ -10,19 +10,25 @@ use Illuminate\Http\Request;
 class SuscripcionesController extends ApiController
 {
     
-   public function __construct(){
+    public function __construct(){
 
-     $this->middleware('client.credentials')->only(['index', 'show']);
-   }
+     $this->middleware('client.credentials');
+    }
 
     public function index()
     {
         if(isset($_GET['tipo'])){
             $tipo = $_GET['tipo'];
             $suscripciones = Suscripciones::where([["Tipo_suscripcion", "=", "$tipo"], ["Estado", "<>", 0]])->get();
+
         }else{
+            
             $suscripciones = Suscripciones::where("Estado", "<>", 0)->get();
         }
+        if(isset($_GET['delete'])){
+            $suscripciones = Suscripciones::where("Estado", "=", 0)->get();
+        }
+
         return response()->json(['data' => $suscripciones], 200);
     }
 
@@ -68,7 +74,7 @@ class SuscripcionesController extends ApiController
     public function show($id)
     {
         $suscripcion = Suscripciones::findOrFail($id);
-        return showOne($suscripcion, 201);
+        return $this->showOne($suscripcion, 201);
     }   
 
 
@@ -104,10 +110,10 @@ class SuscripcionesController extends ApiController
                                         ? $suscripcion->Estado
                                         : $campos['Estado'];
         if ($suscripcion->save()){
-            return showOne($suscripcion, 201);
+            return $this->showOne($suscripcion, 201);
         }
 
-        return errorResponse("Ocurrio algún error intentelo mas tarde", 500);
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
     }
 
     /**
@@ -123,10 +129,10 @@ class SuscripcionesController extends ApiController
         $suscripcion->Estado = 0;
 
         if ($suscripcion->save()){
-            return showOne($suscripcion, 201);
+            return $this->showOne($suscripcion, 201);
         }
 
-        return errorResponse("Ocurrio algún error intentelo mas tarde", 500);
+        return $this->errorResponse("Ocurrio algún error intentelo mas tarde", 500);
 
     }
 }

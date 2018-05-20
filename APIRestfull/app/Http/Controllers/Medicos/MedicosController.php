@@ -17,7 +17,13 @@ class MedicosController extends ApiController
 
     public function index()
     {
-        $medicos = Medicos::where("Estado", "<>", 0)->get();
+
+        if(isset($_GET['centro'])){
+            $centro_medico = $_GET['centro'];
+            $medicos = Medicos::where([["Estado", "<>", 0],["idCentro_medico", "=", "$centro_medico"]])->get();
+        }
+
+
         if(!empty($medicos)){
             return $this->showAll($medicos);
         }else{
