@@ -84,3 +84,6 @@ Route::post('nueva-suscripcion', 'CentroMedico\CentroMedicoSuscripcionController
 
 
 
+
+
+

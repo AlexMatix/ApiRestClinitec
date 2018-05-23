@@ -92,4 +92,9 @@ class UsuariosSistemaController extends ApiController
       return $this->succesMessaje('Eliminado con exito', 201);
 
     }
+
+    public function verifyAcount($token){
+
+        $usuario = User::where("Token_verificacion", "=", "$token");
+    }
 }
