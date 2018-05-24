@@ -79,6 +79,8 @@ Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenContro
 
 Route::post('nueva-suscripcion', 'CentroMedico\CentroMedicoSuscripcionController@newCentroMedicoSuscripcion');
 
+Route::get('ultimas-consultas/{Medico}', 'Consultas\ConsultasMedicoController@ConsutasXMedico');
+
 
 
 
