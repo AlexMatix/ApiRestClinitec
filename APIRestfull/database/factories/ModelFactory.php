@@ -11,6 +11,7 @@ use App\Medicos;
 use App\Pacientes;
 use App\Recetas;
 use App\Suscripciones;
+use App\Urgencias;
 use App\User;
 
 
@@ -231,6 +232,20 @@ $factory->define(Recetas::class, function (Faker\Generator $faker) {
         'Descripcion'      => $faker->text($maxNbChars = 20),
         'Medicamentos'     => $faker->randomElement(["{'id' : 10}","{'id' : 20}","{'id' : 3s0}"]),
         'idConsulta'       => $Consultas->id,
+        'idCentro_medico'  => $Centro_medico->id,
+        'Estado'           => $faker->randomElement([Recetas::NO_ACTIVO, Recetas::ACTIVO]),
+    ];
+});
+
+$factory->define(Recetas::class, function (Faker\Generator $faker) {
+    $Centro_medico = Urgencias::all()->random();
+
+    return [
+        'Motivo'           => $faker->randomElement(['Se callo', 'No tiene pito']),
+        'Prioridad'        => $faker->text($maxNbChars = 20),
+        'Fecha_ingreso'    => $faker->randomElement(["{'id' : 10}","{'id' : 20}","{'id' : 3s0}"]),
+        'Fecha_egreso'     => $Consultas->id,
+        'idPaciente'       => $Consultas->id,
         'idCentro_medico'  => $Centro_medico->id,
         'Estado'           => $faker->randomElement([Recetas::NO_ACTIVO, Recetas::ACTIVO]),
     ];
