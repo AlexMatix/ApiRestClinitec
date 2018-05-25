@@ -15,5 +15,5 @@ sites:
         to: /home/vagrant/apirestful/public
 databases:
     - homestead
-name: api2
-hostname: api2
+name: apidefinitiva
+hostname: apidefinitiva
