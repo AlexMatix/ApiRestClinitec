@@ -237,16 +237,18 @@ $factory->define(Recetas::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(Recetas::class, function (Faker\Generator $faker) {
-    $Centro_medico = Urgencias::all()->random();
-
+$factory->define(Urgencias::class, function (Faker\Generator $faker) {
+    $Paciente      = Pacientes::all()->random();
+    $Centro_medico = Centro_medico::all()->random();
+    
+    $date = date("Y-m-d");
     return [
         'Motivo'           => $faker->randomElement(['Se callo', 'No tiene pito']),
-        'Prioridad'        => $faker->text($maxNbChars = 20),
-        'Fecha_ingreso'    => $faker->randomElement(["{'id' : 10}","{'id' : 20}","{'id' : 3s0}"]),
-        'Fecha_egreso'     => $Consultas->id,
-        'idPaciente'       => $Consultas->id,
+        'Prioridad'        => $faker->randomElement([['Grave','baja']]),
+        'Fecha_ingreso'    => $date,
+        'Fecha_egreso'     => "2020-12-12",
+        'idPaciente'       => $Paciente->id,
         'idCentro_medico'  => $Centro_medico->id,
-        'Estado'           => $faker->randomElement([Recetas::NO_ACTIVO, Recetas::ACTIVO]),
+        'Estado'           => $faker->randomElement([Urgencias::NO_ACTIVO, Urgencias::ACTIVO]),
     ];
 });
