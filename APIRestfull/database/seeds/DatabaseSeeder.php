@@ -14,6 +14,7 @@ use App\Pacientes;
 use App\Recetas;
 use App\Suscripciones;
 use App\Tipo_usuario;
+use App\Urgencias;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,7 @@ class DatabaseSeeder extends Seeder
         Cajas::truncate();
         Consultas::truncate();
         Recetas::truncate();
+        Urgencias::truncate();
 
         //Variables para la cantidad de datos creados por tabla
 
@@ -65,6 +67,7 @@ class DatabaseSeeder extends Seeder
         $cantidadCajas           = 40;
         $cantidadConsultas       = 40;
         $cantidadRecetas         = 40;
+        $cantidadUrgencias       = 40;
 
         factory(Centro_medico::class, $cantidadCentrosMedicos)->create();
         factory(Medicos::class, $cantidadMedicos)->create();
@@ -78,5 +81,6 @@ class DatabaseSeeder extends Seeder
         factory(Cajas::class, $cantidadCajas)->create();
         factory(Consultas::class, $cantidadConsultas)->create();
         factory(Recetas::class, $cantidadRecetas)->create();
+        factory(Urgencias::class, $cantidadUrgencias)->create();
     }
 }
