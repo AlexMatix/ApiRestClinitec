@@ -81,7 +81,9 @@ Route::post('nueva-suscripcion', 'CentroMedico\CentroMedicoSuscripcionController
 
 Route::get('ultimas-consultas/{Medico}', 'Consultas\ConsultasMedicoController@ConsutasXMedico');
 
-Route::get('urgencias-diarias/{CentroMedico}','Urgencias\UrgenciasCentroMedico@UrgenciasXCentroMedico');
+Route::get('urgencias-dia/{CentroMedico}','Urgencias\UrgenciasCentroMedico@UrgenciasXCentroMedico');
+
+Route::get('urgencias-fecha/{CentroMedico}','Urgencias\UrgenciasCentroMedico@UrgenciasXCentroMedicoAndDate');
 
 
 
