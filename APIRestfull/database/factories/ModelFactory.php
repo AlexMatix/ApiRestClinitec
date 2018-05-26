@@ -244,7 +244,7 @@ $factory->define(Urgencias::class, function (Faker\Generator $faker) {
     $date = date("Y-m-d");
     return [
         'Motivo'           => $faker->randomElement(['Se callo', 'No tiene pito']),
-        'Prioridad'        => $faker->randomElement([['Grave','baja']]),
+        'Prioridad'        => $faker->randomElement(['Grave','baja']),
         'Fecha_ingreso'    => $date,
         'Fecha_egreso'     => "2020-12-12",
         'idPaciente'       => $Paciente->id,
