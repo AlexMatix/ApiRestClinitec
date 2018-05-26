@@ -249,6 +249,6 @@ $factory->define(Urgencias::class, function (Faker\Generator $faker) {
         'Fecha_egreso'     => "2020-12-12",
         'idPaciente'       => $Paciente->id,
         'idCentro_medico'  => $Centro_medico->id,
-        'Estado'           => $faker->randomElement([Urgencias::NO_ACTIVO, Urgencias: :ACTIVO]), s
+        'Estado'           => $faker->randomElement([Urgencias::NO_ACTIVO, Urgencias::ACTIVO]),
     ];
 });
