@@ -23,6 +23,7 @@ class CajasOperacionesController extends ApiController
    		$cirugias = Cirugias_x_paciente::where([["idMedico","=",$medico->id],["idCentro_medico","=",$centroMedico->id],["Fecha_egreso","=",$date]])->get();
    		$consultas = Cirugias_x_paciente::where([["idMedico","=",$medico->id],["idCentro_medico","=",$centroMedico->id],["Fecha","=",$date]])->get();
    		$vacunas = Vacunas_x_paciente::where([["idMedico","=",$medico->id],["idCentro_medico","=",$centroMedico->id],["Fecha_aplicacion","=",$date]])->get();
+   		
 
    		print_r($cirugias);
    		print_r($consultas);
