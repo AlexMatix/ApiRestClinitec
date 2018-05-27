@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Enfermeras;
 use App\Enfermeras;
 use App\Http\Controllers\ApiController;
 use App\Traits\showOne;
+use App\User;
 use Illuminate\Http\Request;
 
 class EnfermerasController extends ApiController
@@ -34,10 +35,40 @@ class EnfermerasController extends ApiController
      */
     public function store(Request $request)
     {
-        $campos    = $request->all();
-        $newEnfermera = Enfermeras::create($campos);
-        //201 = respuesta de success register
-        return $this->showAll($newEnfermera);
+
+        $campos = $request->all();
+        $newEnfermera = new Enfermeras;
+        $newEnfermera->Nombre          =  $campos['Nombre']; 
+        $newEnfermera->Apellido        =  $campos['Apellido']; 
+        $newEnfermera->Sexo            =  $campos['Sexo']; 
+        $newEnfermera->Edad            =  $campos['Edad']; 
+        $newEnfermera->Cedula          =  $campos['Cedula']; 
+        $newEnfermera->Direccion       =  $campos['Direccion']; 
+        $newEnfermera->idCentro_medico =  $campos['idCentro_medico']; 
+
+        if(!$newEnfermera->save()){
+            $this->errorResponse('No se pudo registrar usuario', 505);
+        }
+
+        $date = date("Y-m-d");
+
+        $newUsuario = new User;
+        $newUsuario->password       = bcrypt($campos['password']);        
+        $newUsuario->email          = $campos['email'];        
+        $newUsuario->Fecha_registro = $date;        
+        $newUsuario->Token_verificacion = User::generateToken();        
+        $newUsuario->Verificada = User::NO_VERIFICADA;        
+        $newUsuario->idEnfermera = $newEnfermera->id;        
+        $newUsuario->idCentro_medico = $campos['idCentro_medico'];        
+        $newUsuario->idTipo_usuario = User::MEDICO;        
+        
+
+        if(!$newUsuario->save()){
+            $this->errorResponse('No se pudo registrar usuario', 505);
+        }
+
+        return $this->showOne($newUsuario);
+
     }
 
     /**

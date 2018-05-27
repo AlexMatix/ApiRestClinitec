@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pacientes;
 
 use App\Http\Controllers\ApiController;
 use App\Pacientes;
+use App\User;
 use Illuminate\Http\Request;
 
 class PacientesController extends ApiController
@@ -33,10 +34,43 @@ class PacientesController extends ApiController
      */
     public function store(Request $request)
     {
-      $campos     = $request->all();
-      $newPaciente = Pacientes::create($campos);
-      //201 = respuesta de success register
-      return $this->showAll($newPaciente);
+     
+        $campos = $request->all();
+        $newPAciente = new Pacientes;
+        $newPAciente->Nombre          =  $campos['Nombre']; 
+        $newPAciente->Apellidos       =  $campos['Apellidos']; 
+        $newPAciente->Telefono        =  $campos['Telefono']; 
+        $newPAciente->Sexo            =  $campos['Sexo']; 
+        $newPAciente->Edad            =  $campos['Edad']; 
+        $newPAciente->Direccion       =  $campos['Direccion']; 
+        $newPAciente->Tipo_sangre     =  $campos['Tipo_sangre']; 
+        $newPAciente->Fecha_inscripcion =  $campos['Fecha_inscripcion']; 
+        $newPAciente->idCentro_medico =  $campos['idCentro_medico']; 
+
+        if(!$newPAciente->save()){
+            $this->errorResponse('No se pudo registrar usuario', 505);
+        }
+
+        $date = date("Y-m-d");
+
+        $newUsuario = new User;
+        $newUsuario->password       = bcrypt($campos['password']);        
+        $newUsuario->email          = $campos['email'];        
+        $newUsuario->Fecha_registro = $date;        
+        $newUsuario->Token_verificacion = User::generateToken();        
+        $newUsuario->Verificada = User::NO_VERIFICADA;        
+        $newUsuario->idPaciente = $newPAciente->id;        
+        $newUsuario->idCentro_medico = $campos['idCentro_medico'];        
+        $newUsuario->idTipo_usuario = User::MEDICO;        
+        
+
+        if(!$newUsuario->save()){
+            $this->errorResponse('No se pudo registrar usuario', 505);
+        }
+
+        return $this->showOne($newUsuario);
+
+
     }
 
     /**

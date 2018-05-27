@@ -36,6 +36,7 @@ class User extends Model
         'idCentro_medico',
         'idMedico',
         'idEnfermera',
+        'idPaciente',
         'idTipo_usuario',
         'Estado'
 

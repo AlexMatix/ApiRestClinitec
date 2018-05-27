@@ -23,14 +23,14 @@ use Illuminate\Foundation\Http\response;
 		}
 
 		protected function showAll(Collection $collection, $code = 200){
-			return response()->json(['data' => $collection], $code);
+			return response()->json($collection, $code);
 		}
 
 		protected function showList($List, $code = 200){
-			return response()->json(['data' => $List], $code);
+			return response()->json($List, $code);
 		}
 
 		protected function showOne(Model $instance, $code = 200){
-			return response()->json(['data' => $instance], $code);
+			return response()->json($instance, $code);
 		}
 	}

@@ -41,7 +41,6 @@ class MedicosController extends ApiController
     public function store(Request $request)
     {
         $campos = $request->all();
-       
         $newMedico = new Medicos;
         $newMedico->Nombre          =  $campos['Nombre']; 
         $newMedico->Apellidos       =  $campos['Apellidos']; 
@@ -56,9 +55,24 @@ class MedicosController extends ApiController
             $this->errorResponse('No se pudo registrar usuario', 505);
         }
 
+        $date = date("Y-m-d");
+
         $newUsuario = new User;
+        $newUsuario->password       = bcrypt($campos['password']);        
+        $newUsuario->email          = $campos['email'];        
+        $newUsuario->Fecha_registro = $date;        
+        $newUsuario->Token_verificacion = User::generateToken();        
+        $newUsuario->Verificada = User::NO_VERIFICADA;        
+        $newUsuario->idMedico = $newMedico->id;        
+        $newUsuario->idCentro_medico = $campos['idCentro_medico'];        
+        $newUsuario->idTipo_usuario = User::MEDICO;        
         
-        return $this->showAll($newMedico);
+
+        if(!$newUsuario->save()){
+            $this->errorResponse('No se pudo registrar usuario', 505);
+        }
+
+        return $this->showOne($newUsuario);
 
         //Regitramos medico
 
