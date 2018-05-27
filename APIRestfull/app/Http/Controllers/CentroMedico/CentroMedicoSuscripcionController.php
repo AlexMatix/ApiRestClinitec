@@ -42,7 +42,7 @@ class CentroMedicoSuscripcionController extends ApiController
 
         if(empty($usuario->id)){
             $this->rollbackCentroMedico($newCentroMedico->id);
-            return $this->errorResponse('No se pude registras', 500);
+            return $this->errorResponse('No se puede registrar', 500);
         }
 
         $camposSuscripcion = new Suscripciones(); 

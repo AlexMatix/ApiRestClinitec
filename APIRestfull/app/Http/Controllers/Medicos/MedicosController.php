@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Medicos;
 
 use App\Http\Controllers\ApiController;
 use App\Medicos;
+use App\User;
 use Illuminate\Http\Request;
 
 class MedicosController extends ApiController
@@ -39,10 +40,28 @@ class MedicosController extends ApiController
      */
     public function store(Request $request)
     {
-        $campos    = $request->all();
-        $newMedico = Medicos::create($campos);
-        //201 = respuesta de success register
+        $campos = $request->all();
+       
+        $newMedico = new Medicos;
+        $newMedico->Nombre          =  $campos['Nombre']; 
+        $newMedico->Apellidos       =  $campos['Apellidos']; 
+        $newMedico->Especialidad    =  $campos['Especialidad']; 
+        $newMedico->Sexo            =  $campos['Sexo']; 
+        $newMedico->Edad            =  $campos['Edad']; 
+        $newMedico->Cedula          =  $campos['Cedula']; 
+        $newMedico->Direccion       =  $campos['Direccion']; 
+        $newMedico->idCentro_medico =  $campos['idCentro_medico']; 
+
+        if(!$newMedico->save()){
+            $this->errorResponse('No se pudo registrar usuario', 505);
+        }
+
+        $newUsuario = new User;
+        
         return $this->showAll($newMedico);
+
+        //Regitramos medico
+
     }
 
     /**

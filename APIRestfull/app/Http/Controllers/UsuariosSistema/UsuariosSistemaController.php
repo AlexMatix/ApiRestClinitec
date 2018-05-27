@@ -97,4 +97,5 @@ class UsuariosSistemaController extends ApiController
 
         $usuario = User::where("Token_verificacion", "=", "$token");
     }
+
 }

@@ -109,9 +109,8 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 	static $password;
 
     return [
-        'user' 		          => $email = $faker->safeEmail,
         'password' 			  => $password ?: $password = bcrypt('secret'),//'secret',
-        'email' 			  => $email, 
+        'email' 			  => $faker->safeEmail, 
         'Fecha_registro' 	  => $faker->date,
         'Token_verificacion'  => User::generateToken(),
         'Verificada'		  => $faker->randomElement([User::VERIFICADA, User::NO_VERIFICADA]),
@@ -250,5 +249,35 @@ $factory->define(Urgencias::class, function (Faker\Generator $faker) {
         'idPaciente'       => $Paciente->id,
         'idCentro_medico'  => $Centro_medico->id,
         'Estado'           => $faker->randomElement([Urgencias::NO_ACTIVO, Urgencias::ACTIVO]),
+    ];
+});
+
+$factory->define(Vacunas::class, function (Faker\Generator $faker) {
+
+    $Centro_medico = Centro_medico::all()->random();
+    return [
+        'Nombre'           => $faker->name,
+        'Edad_aplicar'     => $faker->numberBetween($min = 0, $max = 100),
+        'Costo'            => $faker->numberBetween($min = 500, $max = 1000),
+        'idCentro_medico'  => $Centro_medico->id,
+        'Estado'           => $faker->randomElement([Vacunas::NO_ACTIVO, Vacunas::ACTIVO]),
+    ];
+});
+
+$factory->define(Vacunas_x_paciente::class, function (Faker\Generator $faker) {
+
+    $Paciente      = Pacientes::all()->random();
+    $Centro_medico = Centro_medico::all()->random();
+    $Consultas     = Consultas::all()->random();
+    $vacunas       = Vacunas::all()->random();
+    $date = date("Y-m-d");
+
+    return [
+        'Fecha_aplicacion' => $date,
+        'idPaciente'       => $Paciente->id,
+        'idVacuna'         => $vacunas->id,
+        'idConsulta'       => $Consultas->id,
+        'idCentro_medico'  => $Centro_medico->id,
+        'Estado'           => $faker->randomElement([Vacunas::NO_ACTIVO, Vacunas::ACTIVO]),
     ];
 });

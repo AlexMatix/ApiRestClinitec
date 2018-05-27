@@ -17,7 +17,6 @@ class CreateUsuariosSistemasTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             
             $table->increments('id');
-            $table->string('user')->unique();
             $table->string('password');
             $table->string('email')->unique();
             $table->date('Fecha_registro');

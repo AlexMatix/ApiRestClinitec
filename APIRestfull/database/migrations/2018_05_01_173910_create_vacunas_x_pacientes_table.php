@@ -18,6 +18,7 @@ class CreateVacunasXPacientesTable extends Migration
             $table->increments('id');
             $table->date('Fecha_aplicacion');
             $table->integer('idPaciente')->unsigned();
+            $table->integer('idVacuna')->unsigned();
             $table->integer('idConsulta')->unsigned();
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('Estado')->unsigned()->default(Vacunas_x_paciente::ACTIVO);
@@ -25,6 +26,7 @@ class CreateVacunasXPacientesTable extends Migration
             //LLaves foraneas
 
             $table->foreign('idPaciente')->references('id')->on('pacientes');
+            $table->foreign('idVacuna')->references('id')->on('vacunas');
             $table->foreign('idConsulta')->references('id')->on('consultas');
             $table->foreign('idCentro_medico')->references('id')->on('centro_medico');
             

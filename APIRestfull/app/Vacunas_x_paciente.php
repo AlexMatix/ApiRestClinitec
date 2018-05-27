@@ -16,6 +16,7 @@ class Vacunas_x_paciente extends Model
      'Fecha_aplicacion',
      'idPaciente',
      'idConsulta',
+     'idVacuna',
      'idCentro_medico',
      'Estado'
     ];
