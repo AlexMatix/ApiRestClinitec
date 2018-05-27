@@ -16,6 +16,8 @@ use App\Suscripciones;
 use App\Tipo_usuario;
 use App\Urgencias;
 use App\User;
+use App\Vacunas;
+use App\Vacunas_x_paciente;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -68,6 +70,8 @@ class DatabaseSeeder extends Seeder
         $cantidadConsultas       = 40;
         $cantidadRecetas         = 40;
         $cantidadUrgencias       = 40;
+        $cantidadVacunas         = 40;
+        $cantidadUrgencias       = 40;
 
         factory(Centro_medico::class, $cantidadCentrosMedicos)->create();
         factory(Medicos::class, $cantidadMedicos)->create();
@@ -82,5 +86,7 @@ class DatabaseSeeder extends Seeder
         factory(Consultas::class, $cantidadConsultas)->create();
         factory(Recetas::class, $cantidadRecetas)->create();
         factory(Urgencias::class, $cantidadUrgencias)->create();
+        factory(Vacunas::class, $cantidadVacunas)->create();
+        factory(Vacunas_x_paciente::class, $cantidadUrgencias)->create();
     }
 }

@@ -13,6 +13,8 @@ use App\Recetas;
 use App\Suscripciones;
 use App\Urgencias;
 use App\User;
+use App\Vacunas;
+use App\Vacunas_x_paciente;
 
 
 /*
