@@ -10,6 +10,8 @@ use App\Consultas;
 use App\Vacunas_x_paciente;
 use App\Medicos;
 use App\Pacientes;
+use App\Vacunas;
+use App\Cirugias;
 
 class CajasOperacionesController extends ApiController
 {
@@ -50,10 +52,6 @@ class CajasOperacionesController extends ApiController
    					
    					), 
    				);
-
-   				$v=Vacuna::findOrFail($vacuna->idVacuna);
-
-
    				$total+=$v->Costo;
    			}
    		}
@@ -62,7 +60,7 @@ class CajasOperacionesController extends ApiController
    		foreach ($cirugias as $cirugia){
   			if(empty($cirugia->id))break;
   			$c=Cirugias::findOrFail($cirugia->idCirugia);
-  			$medico= Medico::findOrFail($cirugia->idMedico);
+  			$medico= Medicos::findOrFail($cirugia->idMedico);
   			$newCirugias[] = array('Cirugia'=>array('Nombre' => $c->Nombre,
   													'Costos' => $c->Costos,
   				),
