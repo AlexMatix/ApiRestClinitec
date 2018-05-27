@@ -2,8 +2,10 @@
 
 use App\Almacenes;
 use App\Cajas;
+use App\Camas_x_piso;
 use App\Centro_medico;
 use App\Cirugias;
+use App\Cirugias_x_paciente;
 use App\Consultas;
 use App\Enfermeras;
 use App\Farmacias;
@@ -280,6 +282,42 @@ $factory->define(Vacunas_x_paciente::class, function (Faker\Generator $faker) {
         'idVacuna'         => $vacunas->id,
         'idConsulta'       => $Consultas->id,
         'idCentro_medico'  => $Centro_medico->id,
+        'Estado'           => $faker->randomElement([Vacunas::NO_ACTIVO, Vacunas::ACTIVO]),
+    ];
+});
+
+$factory->define(Camas_x_piso::class, function (Faker\Generator $faker) {
+
+    $Centro_medico = Centro_medico::all()->random();
+    $date = date("Y-m-d");
+
+    return [
+        'Piso'             => $date,
+        'Seccion'          => $date,
+        'Descripcion'      => $faker->name,
+        'Ocupado'          => $faker->randomElement([Camas_x_piso::CAMA_LIBRE, Camas_x_piso::CAMA_OCUPADA]),
+        'idCentro_medico'  => $Centro_medico->id,
+        'Estado'           => $faker->randomElement([Camas_x_piso::NO_ACTIVA, Camas_x_piso::ACTIVA]),
+    ];
+});
+
+
+$factory->define(Cirugias_x_paciente::class, function (Faker\Generator $faker) {
+
+    $date      = date("Y-m-d");
+    $camas     = Camas_x_piso::all()->random(); 
+    $Paciente  = Pacientes::all()->random();
+    $Medico    = Medicos::all()->random();
+    $cirugia   = Cirugias::all()->random();
+
+    return [
+        'Fecha_ingreso'    => $date,
+        'Fecha_egreso'     => $date,
+        'idCama'           => $camas->id,
+        'idPaciente'       => $Paciente->id,
+        'idCirugia'        => $cirugia->id,
+        'idMedico'         => $Medico->id,
+        'idCentro_medico'  => $Paciente->idCentro_medico,
         'Estado'           => $faker->randomElement([Vacunas::NO_ACTIVO, Vacunas::ACTIVO]),
     ];
 });

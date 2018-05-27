@@ -5,6 +5,7 @@ use App\Cajas;
 use App\Camas_x_piso;
 use App\Centro_medico;
 use App\Cirugias;
+use App\Cirugias_x_paciente;
 use App\Consultas;
 use App\Enfermeras;
 use App\Farmacias;
@@ -54,6 +55,11 @@ class DatabaseSeeder extends Seeder
         Consultas::truncate();
         Recetas::truncate();
         Urgencias::truncate();
+        Vacunas::truncate();
+        Vacunas_x_paciente::truncate();
+        Camas_x_piso::truncate();
+        Cirugias_x_paciente::truncate();
+        
 
         //Variables para la cantidad de datos creados por tabla
 
@@ -88,5 +94,7 @@ class DatabaseSeeder extends Seeder
         factory(Urgencias::class, $cantidadUrgencias)->create();
         factory(Vacunas::class, $cantidadVacunas)->create();
         factory(Vacunas_x_paciente::class, $cantidadUrgencias)->create();
+        factory(Camas_x_piso::class, $cantidadUrgencias)->create();
+        factory(Cirugias_x_paciente::class, $cantidadUrgencias)->create();
     }
 }
