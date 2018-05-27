@@ -16,6 +16,7 @@ class CreateVacunasXPacientesTable extends Migration
     {
         Schema::create('vacunas_x_pacientes', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('Fecha_aplicacion');
             $table->integer('idPaciente')->unsigned();
             $table->integer('idConsulta')->unsigned();
             $table->integer('idCentro_medico')->unsigned();

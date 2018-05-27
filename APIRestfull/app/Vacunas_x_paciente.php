@@ -13,12 +13,12 @@ class Vacunas_x_paciente extends Model
     protected $fillable = 
     [
      'id',
+     'Fecha_aplicacion',
      'idPaciente',
      'idConsulta',
      'idCentro_medico',
      'Estado'
     ];
-
 
     public $timestamps = false;
 }
