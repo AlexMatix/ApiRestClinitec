@@ -26,6 +26,10 @@ use Illuminate\Foundation\Http\response;
 			return response()->json(['data' => $collection], $code);
 		}
 
+		protected function showList($List, $code = 200){
+			return response()->json(['data' => $List], $code);
+		}
+
 		protected function showOne(Model $instance, $code = 200){
 			return response()->json(['data' => $instance], $code);
 		}
