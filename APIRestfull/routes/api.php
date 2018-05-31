@@ -81,12 +81,13 @@ Route::post('nueva-suscripcion', 'CentroMedico\CentroMedicoSuscripcionController
 
 Route::get('ultimas-consultas/{Medico}', 'Consultas\ConsultasMedicoController@ConsutasXMedico');
 
-
 Route::get('urgencias-dia/','Urgencias\UrgenciasCentroMedicoController@UrgenciasXCentroMedico');
 
 Route::get('urgencias-fecha/{date}','Urgencias\UrgenciasCentroMedicoController@UrgenciasXCentroMedicoAndDate');
 
 Route::get('caja-getTotal/{date}','Cajas\CajasOperacionesController@CajasCalculoTotal');
+
+Route::post('login-usuario', 'UsuariosSistema\LoginUsuario@loginUsuario');
 
 
 
