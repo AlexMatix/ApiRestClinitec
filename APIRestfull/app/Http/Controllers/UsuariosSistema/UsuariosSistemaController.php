@@ -24,18 +24,34 @@ class UsuariosSistemaController extends ApiController
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-      $campos     = $request->all();
-      $newUsuario = User::create($campos);
-      //201 = respuesta de success register
-      return $this->showAll($newUsuario);
+      $campos  = $request->all();
+      $newUser = new User;
+      $newUser->password       = bcrypt($campos['password']);
+      $newUser->email          = $campos['email'];
+      $newUser->Fecha_registro = date("Y-m-d");
+      $newUser->Token_verificacion = User::generateToken();
+      $newUser->idCentro_medico    = $campos['idCentro_medico'];
+
+      if($request->has('idMedico')){
+          $newUser->idMedico    = $campos['idMedico'];  
+      }elseif ($request->has('idEnfermera')) {
+          $newUser->idEnfermera = $campos['idEnfermera'];
+      }elseif ($request->has('idPaciente')){
+          $newUser->idPaciente  = $campos['idPaciente'];
+      }else{
+        return $this->errorResponse('No hay tipo de usuario', 500);
+      }
+      
+      if($newUser->save()){
+        return $this->showOne($newUser);
+      }
+      
+      return $this->errorResponse('Error al guardar', 500);
+
+      
+      return $this->showAll($newUser);
     }
 
     /**
