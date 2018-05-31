@@ -15,11 +15,9 @@ class CamasXPisoController extends ApiController
         $this->middleware('client.credentials')->only(['index', 'show']);
     }
 
-
     public function index()
     {
        $camas = Camas_x_piso::where("Estado", "<>", 0)->get();
-
        if(!empty($camas)){
             return $this->showAll($camas);
        }else{

@@ -25,7 +25,4 @@ class Camas_x_piso extends Model
 
     public $timestamps = false;
  	protected $table = 'camas_x_piso';
- 	public function getAllbyEstado(){
- 		
- 	}
 }

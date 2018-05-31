@@ -88,10 +88,7 @@ Route::get('urgencias-fecha/{date}','Urgencias\UrgenciasCentroMedicoController@U
 
 Route::get('caja-getTotal/{date}','Cajas\CajasOperacionesController@CajasCalculoTotal');
 
+Route::get('availableCama','CamasXPiso\CamaDisponibilidad@isAvailable');
 
-
-
-
-
-
+Route::get('notAvailableCama','CamasXPiso\CamaDisponibilidad@isNotAvailable');
 
