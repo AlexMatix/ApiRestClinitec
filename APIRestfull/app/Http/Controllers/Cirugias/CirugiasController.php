@@ -17,6 +17,9 @@ class CirugiasController extends ApiController
 
     public function index()
     {
+        if(!isset($_GET['tipo'])){
+            return $this->errorResponse('Hospital no encontrado', 500);
+        }
         $cirugia = Cirugias::where("Estado", "<>", 0)->get();
         
         if(empty($cirugia)){
