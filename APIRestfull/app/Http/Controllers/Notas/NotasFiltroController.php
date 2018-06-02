@@ -9,11 +9,13 @@ class NotasFiltroController extends Controller
 {
     public function NotasbyConsultaTipo(){
 		$idMedico=$_GET['idMedico'];
-		$tipo=$_GET['idMedico'];
+		$tipo=$_GET['tipo'];
+		$idConsulta=$_GET['idConsulta'];
 
 
 		$medico= Medicos::findOrFail($idMedico);
-		$notas = Notas::where([])->get();
+		$notas = Notas::where([["idConsulta","=",$idConsulta],["tipo","=",$tipo],["idMedico","=",$idMedico]])->get();
+		return $this->showAll($notas);
 
     }
 }
