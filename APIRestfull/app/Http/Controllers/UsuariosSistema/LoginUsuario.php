@@ -50,82 +50,32 @@ class LoginUsuario extends ApiController
 
     public function getMenu($permiso){
 
+
         switch ($permiso) {
-            case User::SUPERADMIN:
-                $menu = "{
-                    titulo: 'Inicio',
-                    icono: 'zmdi zmdi-home',
-                    submenu: [
-                        {titulo: 'Dashboard', url: '/dashboard'}
-                        ]
-                    }";
+            case $permiso == User::SUPERADMIN:
+                $menu = "{titulo:'Inicio',icono:'zmdi zmdi-home',submenu:[{titulo:'Dashboard',url:'/dashboard'}]}";
             break;
 
             case User::MEDICO:
-                $menu = "{
-                      titulo: 'Medicos',
-                      icono: 'zmdi zmdi-account-add',
-                      submenu: [
-                        {titulo: 'Listar Medicos', url: '/medicos'},
-                        {titulo: 'Agregar Medico', url: '/agregar-medico'}
-                      ]
-                    }";
+                $menu = "{titulo:'Medicos',icono:'zmdi zmdi-account-add',submenu:[{titulo:'Listar Medicos',url:'/medicos'},{titulo:'Agregar Medico',url:'/agregar-medico'}]}";
             break;
 
-            case 'User::ENFERMERA':
-                $menu = "{
-                      titulo: 'Enfermeras',
-                      icono: 'zmdi zmdi-account-add',
-                      submenu: [
-                        {titulo: 'Listar Enfermeras', url: '/enfermeras'},
-                        {titulo: 'Agregar Enfermeras', url: '/agregar-enfermera'}
-                      ]
-                    }";
+            case User::ENFERMERA:
+                $menu = "{titulo:'Enfermeras',icono:'zmdi zmdi-account-add',submenu:[{titulo: 'Listar Enfermeras',url:'/enfermeras'},{titulo:'Agregar Enfermeras',url:'/agregar-enfermera'}]}";
             break;
 
             case User::ADMINISTRADOR:
-                $menu = "{
-                      titulo: 'Infraestructura',
-                      icono: 'zmdi zmdi-account-add',
-                      submenu: [
-                        {titulo: 'Agregar piso', url: '/agregar-piso'},
-                        {titulo: 'Agregar seccion', url: '/agregar-seccion'},
-                        {titulo: 'Listar pisos', url: '/pisos'},
-                        {titulo: 'Listar secciones', url: '/secciones'},
-                      ]
-                    }";
+                $menu = "{titulo:'Infraestructura',icono:'zmdi zmdi-account-add',submenu:[{titulo:'Agregar piso',url:'/agregar-piso'},{titulo:'Agregar seccion',url:'/agregar-seccion'},{titulo:'Listar pisos',url:'/pisos'},{titulo:'Listar secciones',url:'/secciones'},]}";
             break;
 
             case User::PACIENTE:
-                $menu = "{
-                      titulo: 'Pacientes',
-                      icono: 'zmdi zmdi-account-add',
-                      submenu: [
-                        {titulo: 'Listar pacientes', url: '/pacientes'},
-                        {titulo: 'Agregar pacientes', url: '/agregar-paciente'}
-                      ]
-                    }";
+                $menu = "{titulo:'Pacientes',icono:'zmdi zmdi-account-add',submenu:[{titulo:'Listar pacientes', url:'/pacientes'},{titulo:'Agregar pacientes',url:'/agregar-paciente'}]}";
             break;
 
             case User::CAJERO:
-                $menu = "{
-                      titulo: 'Consulta',
-                      icono: 'zmdi zmdi-account-add',
-                      submenu: [
-                        {titulo: 'Citas', url: '/cita'}, // Este modulo lo planeo manejar con tabs para listar y agregar citas
-                        {titulo: 'Historia clinica', url: '/historia-clinica'}, // Este modulo lo planeo manejar con tabs para consultar y agregar historias clinicas
-                        {titulo: 'Estudios y resultados', url: '/estudios'},
-                        {titulo: 'Notas', url: '/notas'}, // Este modulo lo planeo manejar con tabs para consultar y agregar notas
-                        {titulo: 'Cuadro clinico', url: '/cuadro-clinico'}, // Este modulo lo planeo manejar con tabs para consultar y agregar notas
-                        {titulo: 'Recetas de medicamentos', url: '/recetas-medicamentos'}, // Este modulo lo planeo manejar con tabs para consultar y agregar notas
-                        {titulo: 'Somatometría', url: '/somatometria'}, // Este modulo lo planeo manejar con tabs para consultar y agregar dependiendo del paciente
-                        {titulo: 'Alergias', url: '/alergias'}, // Este modulo lo planeo manejar con tabs para consultar y agregar dependiendo del paciente
-                        {titulo: 'Cartilla de vacunación', url: '/cartilla-vacunacion'}, // Este modulo lo planeo manejar con tabs para consultar y agregar dependiendo del paciente
-                        {titulo: 'Diagnnosticos', url: '/diagnosticos'}, // Este modulo lo planeo manejar con tabs para consultar y agregar dependiendo del paciente
-                      ]
-                    }";
+                $menu = "{titulo:'Consulta',icono:'zmdi zmdi-account-add',submenu:[{titulo:'Citas',url:'/cita'},{titulo:'Historia clinica',url:'/historia-clinica'},{titulo: 'Estudios y resultados',url:'/estudios'},{titulo:'Notas',url:'/notas'},{titulo:'Cuadro clinico',url:'/cuadro-clinico'},{titulo:'Recetas de medicamentos',url:'/recetas-medicamentos'},{titulo: 'Somatometría',url:'/somatometria'},{titulo:'Alergias',url:'/alergias'},{titulo:'Cartilla de vacunación',url:'/cartilla-vacunacion'},{titulo:'Diagnnosticos',url:'/diagnosticos'},]}";
             break;
         }
-        return json_decode($menu);
+        return $menu;
     }
 }

@@ -338,6 +338,8 @@ $factory->define(Citas_agendadas::class, function (Faker\Generator $faker) {
      'idMedico'        =>$Medico->id,
      'idCentro_medico' =>$Centro_medico->id,
      'Estado'          =>$faker->randomElement([Citas_agendadas::ASISTIO,Citas_agendadas::NO_ASISTIO,Citas_agendadas::CONFIRMADA,Citas_agendadas::ELIMINADA,Citas_agendadas::NO_CONFIRMADA]),
+     ];
+});
 
 $factory->define(Notas::class, function (Faker\Generator $faker) {
     
