@@ -314,13 +314,13 @@ $factory->define(Cirugias_x_paciente::class, function (Faker\Generator $faker) {
 
     return [
         'Fecha_ingreso'    => $date,
-        'Fecha_egreso'     => $date,
+        'Fecha_egreso'     => $faker->randomElement([$date, '2007-01-15', '2018-01-15']),
         'idCama'           => $camas->id,
         'idPaciente'       => $Paciente->id,
         'idCirugia'        => $cirugia->id,
         'idMedico'         => $Medico->id,
         'idCentro_medico'  => $Paciente->idCentro_medico,
-        'Estado'           => $faker->randomElement([Vacunas::NO_ACTIVO, Vacunas::ACTIVO]),
+        'Estado'           => $faker->randomElement([Cirugias_x_paciente::NO_ACTIVO, Cirugias_x_paciente::ACTIVO,Cirugias_x_paciente::EN_PROCESO]),
     ];
 });
 

@@ -17,7 +17,7 @@ class CreateCirugiasXPacientesTable extends Migration
         Schema::create('cirugias_x_pacientes', function (Blueprint $table) {
             $table->increments('id');
             $table->date('Fecha_ingreso');
-            $table->date('Fecha_egreso');
+            $table->date('Fecha_egreso')->nullable();
             $table->integer('idCama')->unsigned();
             $table->integer('idPaciente')->unsigned();
             $table->integer('idCirugia')->unsigned();
