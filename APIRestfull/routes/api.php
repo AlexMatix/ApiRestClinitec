@@ -104,3 +104,5 @@ Route::get('citas-asistidas','CitasAgendadas\CitasAgendadasMedicoController@cita
 Route::get('citas-noAsistidas','CitasAgendadas\CitasAgendadasMedicoController@citasAgendadasNoAsistida');
 
 Route::get('citas-fecha-estado/{estado}','CitasAgendadas\CitasAgendadasMedicoController@citasFechaEstado');
+
+Route::get('notas-by-consulta-tipo','Notas\NotasFiltroController@NotasbyConsultaTipo');
