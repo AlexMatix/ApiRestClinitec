@@ -10,6 +10,7 @@ use App\Consultas;
 use App\Enfermeras;
 use App\Farmacias;
 use App\Medicos;
+use App\Notas;
 use App\Pacientes;
 use App\Recetas;
 use App\Suscripciones;
@@ -319,5 +320,32 @@ $factory->define(Cirugias_x_paciente::class, function (Faker\Generator $faker) {
         'idMedico'         => $Medico->id,
         'idCentro_medico'  => $Paciente->idCentro_medico,
         'Estado'           => $faker->randomElement([Vacunas::NO_ACTIVO, Vacunas::ACTIVO]),
+    ];
+});
+
+
+$factory->define(Notas::class, function (Faker\Generator $faker) {
+    
+    $Consultas = Consultas::all()->random();
+
+    return [
+        'Tipo_nota'        => $faker->randomElement([Notas::URGENCIA, Notas::INGRESO, Notas::EVOLUCION, Notas::GUARDIA, Notas::POSQUIRURJICA, Notas::DEFUNCION, Notas::AMBULANCIA]),
+        'Diagnostico'      => $faker->paragraph,
+        'Peso'             => $faker->numberBetween($min = 50, $max = 100),
+        'Talla'            => $faker->numberBetween($min = 50, $max = 100),
+        'IMC'              => $faker->numberBetween($min = 50, $max = 100),
+        'SC'               => $faker->numberBetween($min = 50, $max = 100),
+        'SVT'              => $faker->numberBetween($min = 50, $max = 100),
+        'FC'               => $faker->numberBetween($min = 50, $max = 100),
+        'TR'               => $faker->numberBetween($min = 50, $max = 100),
+        'Temperatura'      => $faker->numberBetween($min = 50, $max = 100),
+        'TA'               => $faker->numberBetween($min = 50, $max = 100),
+        'S02'              => $faker->numberBetween($min = 50, $max = 100),
+        'Nota'             => $faker->paragraph,
+        'Pronostico'       => $faker->paragraph,
+        'idConsulta'       => $Consultas->id,
+        'idMedico'         => $Consultas->idMedico,
+        'idCentro_medico'  => $Consultas->idCentro_medico,
+        'Estado'           => $faker->randomElement([Notas::NO_ACTIVO, Notas::ACTIVO]),
     ];
 });

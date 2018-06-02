@@ -17,7 +17,7 @@ class CreateNotasTable extends Migration
         Schema::create('notas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Tipo_nota');
-            $table->string('Diagnostico');
+            $table->text('Diagnostico');
             $table->integer('Peso');
             $table->integer('Talla');
             $table->string('IMC');
@@ -28,14 +28,14 @@ class CreateNotasTable extends Migration
             $table->integer('Temperatura');
             $table->string('TA');
             $table->string('S02');
-            $table->string('Nota');
-            $table->string('Pronostico');
-            $table->integer('idConsultas')->unsigned();
+            $table->text('Nota');
+            $table->text('Pronostico');
+            $table->integer('idConsulta')->unsigned();
             $table->integer('idMedico')->unsigned();
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('Estado')->unsigned()->default(Notas::ACTIVO);
 
-            $table->foreign('idConsultas')->references('id')->on('consultas');
+            $table->foreign('idConsulta')->references('id')->on('consultas');
             $table->foreign('idMedico')->references('id')->on('tipo_usuario');
             $table->foreign('idCentro_medico')->references('id')->on('centro_medico');
             
