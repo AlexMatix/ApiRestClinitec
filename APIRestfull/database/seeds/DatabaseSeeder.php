@@ -20,6 +20,7 @@ use App\Urgencias;
 use App\User;
 use App\Vacunas;
 use App\Vacunas_x_paciente;
+use App\Notas;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -60,7 +61,11 @@ class DatabaseSeeder extends Seeder
         Vacunas_x_paciente::truncate();
         Camas_x_piso::truncate();
         Cirugias_x_paciente::truncate();
+<<<<<<< HEAD
         Citas_agendadas::truncate();
+=======
+        Notas::truncate();
+>>>>>>> 4bc93caa24001c35e05338582557f565c6cc3dfd
         
 
         //Variables para la cantidad de datos creados por tabla
@@ -98,6 +103,10 @@ class DatabaseSeeder extends Seeder
         factory(Vacunas_x_paciente::class, $cantidadUrgencias)->create();
         factory(Camas_x_piso::class, $cantidadUrgencias)->create();
         factory(Cirugias_x_paciente::class, $cantidadUrgencias)->create();
+<<<<<<< HEAD
         factory(Citas_agendadas::class, $cantidadUrgencias)->create();
+=======
+        factory(Notas::class, $cantidadUrgencias)->create();
+>>>>>>> 4bc93caa24001c35e05338582557f565c6cc3dfd
     }
 }
