@@ -93,3 +93,14 @@ Route::post('login-usuario', 'UsuariosSistema\LoginUsuario@loginUsuario');
 
 Route::get('notAvailableCama','CamasXPiso\CamaDisponibilidad@isNotAvailable');
 
+Route::get('citas-confirmadas','CitasAgendadas\CitasAgendadasMedicoController@citasAgendadasConfirmadas');
+
+Route::get('citas-noConfirmadas','CitasAgendadas\CitasAgendadasMedicoController@citasAgendadasNoConfirmadas');
+
+Route::get('citas-eliminadas','CitasAgendadas\CitasAgendadasMedicoController@citasAgendadasEliminada');
+
+Route::get('citas-asistidas','CitasAgendadas\CitasAgendadasMedicoController@citasAgendadasAsistido');
+
+Route::get('citas-noAsistidas','CitasAgendadas\CitasAgendadasMedicoController@citasAgendadasNoAsistida');
+
+Route::get('citas-fecha-estado/{estado}','CitasAgendadas\CitasAgendadasMedicoController@citasFechaEstado');

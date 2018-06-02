@@ -17,6 +17,7 @@ use App\Urgencias;
 use App\User;
 use App\Vacunas;
 use App\Vacunas_x_paciente;
+use App\Citas_agendadas;
 
 
 /*
@@ -319,5 +320,22 @@ $factory->define(Cirugias_x_paciente::class, function (Faker\Generator $faker) {
         'idMedico'         => $Medico->id,
         'idCentro_medico'  => $Paciente->idCentro_medico,
         'Estado'           => $faker->randomElement([Vacunas::NO_ACTIVO, Vacunas::ACTIVO]),
+    ];
+});
+
+$factory->define(Citas_agendadas::class, function (Faker\Generator $faker) {
+    $Paciente  = Pacientes::all()->random();
+    $Medico    = Medicos::all()->random();
+    $Centro_medico = Centro_medico::all()->random();
+    
+    return [
+     'Titulo'          =>$faker->name,
+     'Fecha'           =>$faker->date($format = 'Y-m-d', $max = 'now'),
+     'Hora_inicio'     =>$faker->time($format = 'H:i:s', $max = 'now'),
+     'Hora_termino'    =>date('H:i:s'),
+     'idPaciente'      =>$Paciente->id,
+     'idMedico'        =>$Medico->id,
+     'idCentro_medico' =>$Centro_medico->id,
+     'Estado'          =>$faker->randomElement([Citas_agendadas::ASISTIO,Citas_agendadas::NO_ASISTIO,Citas_agendadas::CONFIRMADA,Citas_agendadas::ELIMINADA,Citas_agendadas::NO_CONFIRMADA]),
     ];
 });

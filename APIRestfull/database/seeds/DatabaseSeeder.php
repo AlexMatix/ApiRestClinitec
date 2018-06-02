@@ -1,5 +1,6 @@
 <?php
 
+use App\Citas_agendadas;
 use App\Almacenes;
 use App\Cajas;
 use App\Camas_x_piso;
@@ -59,6 +60,7 @@ class DatabaseSeeder extends Seeder
         Vacunas_x_paciente::truncate();
         Camas_x_piso::truncate();
         Cirugias_x_paciente::truncate();
+        Citas_agendadas::truncate();
         
 
         //Variables para la cantidad de datos creados por tabla
@@ -96,5 +98,6 @@ class DatabaseSeeder extends Seeder
         factory(Vacunas_x_paciente::class, $cantidadUrgencias)->create();
         factory(Camas_x_piso::class, $cantidadUrgencias)->create();
         factory(Cirugias_x_paciente::class, $cantidadUrgencias)->create();
+        factory(Citas_agendadas::class, $cantidadUrgencias)->create();
     }
 }
