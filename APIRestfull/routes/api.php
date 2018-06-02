@@ -89,7 +89,7 @@ Route::get('caja-getTotal/{date}','Cajas\CajasOperacionesController@CajasCalculo
 
 Route::get('availableCama','CamasXPiso\CamaDisponibilidad@isAvailable');
 
-Route::post('login-usuario', 'UsuariosSistema\LoginUsuario@loginUsuario');
+Route::get('login-usuario/{email}', 'UsuariosSistema\LoginUsuario@loginUsuario');
 
 Route::get('notAvailableCama','CamasXPiso\CamaDisponibilidad@isNotAvailable');
 

@@ -30,12 +30,12 @@ class CreateNotasTable extends Migration
             $table->string('S02');
             $table->string('Nota');
             $table->string('Pronostico');
-            $table->integer('idPaciente')->unsigned();
+            $table->integer('idConsultas')->unsigned();
             $table->integer('idMedico')->unsigned();
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('Estado')->unsigned()->default(Notas::ACTIVO);
 
-            $table->foreign('idPaciente')->references('id')->on('pacientes');
+            $table->foreign('idConsultas')->references('id')->on('consultas');
             $table->foreign('idMedico')->references('id')->on('tipo_usuario');
             $table->foreign('idCentro_medico')->references('id')->on('centro_medico');
             
