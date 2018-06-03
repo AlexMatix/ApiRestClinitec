@@ -108,3 +108,7 @@ Route::get('citas-fecha-estado/{estado}','CitasAgendadas\CitasAgendadasMedicoCon
 Route::get('notas-by-consulta-tipo','Notas\NotasFiltroController@NotasbyConsultaTipo');
 
 Route::get('consultas-paciente/{paciente}','Consultas\ConsultasMedicoController@ConsultasXPaciente');
+
+Route::get('ultimas-cirugias/{CentroMedico}','CirugiasPaciente\CirugiasHospitalController@getLastCirugias');
+
+Route::get('notas-by-consulta-tipo','Notas\NotasFiltroController@NotasbyConsultaTipo');
