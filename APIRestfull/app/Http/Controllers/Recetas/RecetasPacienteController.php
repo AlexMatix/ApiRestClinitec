@@ -5,24 +5,29 @@ namespace App\Http\Controllers\Recetas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 use App\Farmacias;
+use App\Centro_medico;
 use Illuminate\Support\Facades\DB;
 
 class RecetasPacienteController extends ApiController
 {
     public function RecetaByPaciente(){
+
+        $idCentroMedico = $_GET['idCentroMedico'];
+        $centroMedico= Centro_medico::findOrFail($idCentroMedico);
     	$idPaciente=$_GET['idPaciente'];
     	$recetas = DB::table('recetas')       
     						->join('consultas','recetas.idConsulta', '=', 'consultas.id')
     						->join('pacientes','consultas.idPaciente','=','pacientes.id')
-    						->where('pacientes.id','=',$idPaciente)
+    						->where([['pacientes.id','=',$idPaciente],['consultas.idCentro_medico','=',$centroMedico->id]])
     						->select('recetas.Titulo','recetas.Descripcion','recetas.Medicamentos','recetas.Estado','pacientes.Nombre','pacientes.Apellidos')
     	
     						->get();
+        $result=[];                    
     	foreach ($recetas as $receta){
     		$Medicamentos = json_decode($receta->Medicamentos);
     		foreach ($Medicamentos as $medicamento) {
     			$medicinas = Farmacias::findOrFail($medicamento);
-    			$medicina =array(
+    			$medicina[] =array(
     						'Nombre_marca' => $medicinas->Nombre_marca,
     						'Nombre_compuesto' => $medicinas->Nombre_compuesto,
     						'Precentacion' => $medicinas->Precentacion,
