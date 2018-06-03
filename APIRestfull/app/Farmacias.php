@@ -27,6 +27,6 @@ class Farmacias extends Model
      'Estado',
     ];
 
-
+    protected $hidden=['id','Estado'];
     public $timestamps = false;    
 }

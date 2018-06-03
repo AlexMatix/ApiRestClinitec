@@ -112,3 +112,5 @@ Route::get('consultas-paciente/{paciente}','Consultas\ConsultasMedicoController@
 Route::get('ultimas-cirugias/{CentroMedico}','CirugiasPaciente\CirugiasHospitalController@getLastCirugias');
 
 Route::get('notas-by-consulta-tipo','Notas\NotasFiltroController@NotasbyConsultaTipo');
+
+Route::get('recetas-paciente','Recetas\RecetasPacienteController@RecetaByPaciente');

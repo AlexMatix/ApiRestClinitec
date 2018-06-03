@@ -235,7 +235,7 @@ $factory->define(Recetas::class, function (Faker\Generator $faker) {
     return [
         'Titulo'           => $faker->name,
         'Descripcion'      => $faker->text($maxNbChars = 20), 
-        'Medicamentos'     => $faker->randomElement(["{'id' : 10}","{'id' : 20}","{'id' : 30}"]),
+        'Medicamentos'     => $faker->randomElement(['{"id":10,"id":11}','{"id":20}','{"id":30}']),
         'idConsulta'       => $Consultas->id,
         'idCentro_medico'  => $Centro_medico->id,
         'Estado'           => $faker->randomElement([Recetas::NO_ACTIVO, Recetas::ACTIVO]),

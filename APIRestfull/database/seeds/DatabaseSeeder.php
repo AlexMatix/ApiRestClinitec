@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
         $cantidadSuscripciones   = 10;
         $cantidadCirugias        = 40;
         $cantidadAlmacenes       = 20;
-        $cantidadFarmacias       = 40;
+        $cantidadFarmacias       = 50;
         $cantidadCajas           = 40;
         $cantidadConsultas       = 40;
         $cantidadRecetas         = 40;
