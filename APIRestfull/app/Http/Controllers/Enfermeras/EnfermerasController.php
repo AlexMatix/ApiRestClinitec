@@ -18,8 +18,15 @@ class EnfermerasController extends ApiController
 
 
     public function index()
-    {
-        $enfermeras = Enfermeras::where("Estado", "<>", 0)->get();
+    { 
+        if(isset($_GET['tipo'])){
+            $enfermeras = Enfermeras::where([["Estado", "<>", 0],
+                                             ["idCentro_medico","=",$_GET['tipo']]])->get();
+        }
+        else{
+           $enfermeras = Enfermeras::where("Estado", "<>", 0)->get();
+        }
+
         if(!empty($enfermeras)){
             return $this->showAll($enfermeras);
         }else{
