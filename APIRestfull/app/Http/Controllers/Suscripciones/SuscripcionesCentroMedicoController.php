@@ -17,6 +17,7 @@ class SuscripcionesCentroMedicoController extends ApiController
     public function SuscripcionXCentroMedico($Tipo_suscripcion){
 
 
+
     	$suscripciones = DB::table('suscripciones')       
     						->join('centro_medico','suscripciones.idCentro_medico', '=', 'centro_medico.id')
     						->where('suscripciones.Tipo_suscripcion','=', $Tipo_suscripcion)

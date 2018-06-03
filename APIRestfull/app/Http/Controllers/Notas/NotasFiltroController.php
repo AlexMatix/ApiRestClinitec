@@ -7,10 +7,13 @@ use App\Http\Controllers\ApiController;
 use App\Medicos;
 use App\Notas;
 use App\Consultas;
+use App\Centro_medico;
 
 class NotasFiltroController extends ApiController
 {
     public function NotasbyConsultaTipo(){
+
+    	$idCentroMedico = $_GET['idCentroMedico'];
 
 		if(isset($_GET['idMedico'])){
 			$idMedico=$_GET['idMedico'];
@@ -31,6 +34,7 @@ class NotasFiltroController extends ApiController
 
 		if(empty($query))
 			return $this->errorResponse("No hay datos", 404);
+		$query[]=["idCentro_medico","=",$centroMedico->id];
 
 		$notas = Notas::where($query)->get();
 		foreach ($notas as $nota) {
