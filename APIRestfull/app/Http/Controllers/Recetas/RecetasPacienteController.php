@@ -22,7 +22,7 @@ class RecetasPacienteController extends ApiController
     		$Medicamentos = json_decode($receta->Medicamentos);
     		foreach ($Medicamentos as $medicamento) {
     			$medicinas = Farmacias::findOrFail($medicamento);
-    			$medicina =array(
+    			$medicina[] =array(
     						'Nombre_marca' => $medicinas->Nombre_marca,
     						'Nombre_compuesto' => $medicinas->Nombre_compuesto,
     						'Precentacion' => $medicinas->Precentacion,
