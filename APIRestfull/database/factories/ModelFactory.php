@@ -6,6 +6,7 @@ use App\Camas_x_piso;
 use App\Centro_medico;
 use App\Cirugias;
 use App\Cirugias_x_paciente;
+use App\Citas_agendadas;
 use App\Consultas;
 use App\Enfermeras;
 use App\Farmacias;
@@ -14,11 +15,11 @@ use App\Notas;
 use App\Pacientes;
 use App\Recetas;
 use App\Suscripciones;
+use App\Traslados;
 use App\Urgencias;
 use App\User;
 use App\Vacunas;
 use App\Vacunas_x_paciente;
-use App\Citas_agendadas;
 
 
 /*
@@ -365,4 +366,18 @@ $factory->define(Notas::class, function (Faker\Generator $faker) {
         'idCentro_medico'  => $Consultas->idCentro_medico,
         'Estado'           => $faker->randomElement([Notas::NO_ACTIVO, Notas::ACTIVO]),
     ];
+});
+
+
+$factory->define(Traslados::class, function (Faker\Generator $faker) {
+    $Paciente = Pacientes::all()->random();
+    $Camas    = Camas_x_piso::all()->random();
+    
+    return [
+     'Fecha_traslado'  => $faker->date($format = 'Y-m-d', $max = 'now'),
+     'idCama'          => $Camas->id,
+     'idPaciente'      => $Paciente->id,
+     'idCentro_medico' => $Paciente->idCentro_medico,
+     'Estado'          => $faker->randomElement([Traslados::ACTIVO, Traslados::NO_ACTIVO]),
+     ];
 });

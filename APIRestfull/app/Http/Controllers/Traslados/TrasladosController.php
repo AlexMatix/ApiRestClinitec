@@ -16,15 +16,15 @@ class TrasladosController extends ApiController
 
     public function index()
     {
-        if(isset($_GET['tipo'])){
-            return $this->errorResponse('Datos no encontrada');
+        if(!isset($_GET['tipo'])){
+            return $this->errorResponse('Datos no encontrada',500);
         }
 
         $traslado = Traslados::where([["Estado", "<>", 0],
-                                      ["idCentro_medico", "=", $_GET['tipo']]])->get();
+                                      ["idCentro_medico", "=", $_GET['tipo'] ]])->get();
         
         if(empty($traslado)){
-            return $this->errorResponse('Datos no encontrados', 404);
+            return $this->errorResponse('Datos no encontrados',500);
         }
         return $this->showAll($traslado, 200);
     }

@@ -1,26 +1,27 @@
 <?php
 
-use App\Citas_agendadas;
 use App\Almacenes;
 use App\Cajas;
 use App\Camas_x_piso;
 use App\Centro_medico;
 use App\Cirugias;
 use App\Cirugias_x_paciente;
+use App\Citas_agendadas;
 use App\Consultas;
 use App\Enfermeras;
 use App\Farmacias;
 use App\Infrestructura_Centro_medico;
 use App\Medicos;
+use App\Notas;
 use App\Pacientes;
 use App\Recetas;
 use App\Suscripciones;
 use App\Tipo_usuario;
+use App\Traslados;
 use App\Urgencias;
 use App\User;
 use App\Vacunas;
 use App\Vacunas_x_paciente;
-use App\Notas;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -61,6 +62,7 @@ class DatabaseSeeder extends Seeder
         Vacunas_x_paciente::truncate();
         Camas_x_piso::truncate();
         Cirugias_x_paciente::truncate();
+        Traslados::truncate();
 
         Citas_agendadas::truncate();
 
@@ -101,6 +103,7 @@ class DatabaseSeeder extends Seeder
         factory(Vacunas_x_paciente::class, $cantidadUrgencias)->create();
         factory(Camas_x_piso::class, $cantidadUrgencias)->create();
         factory(Cirugias_x_paciente::class, $cantidadUrgencias)->create();
+        factory(Traslados::class, $cantidadUrgencias)->create();
 
         factory(Citas_agendadas::class, $cantidadUrgencias)->create();
 
