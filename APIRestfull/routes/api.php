@@ -114,3 +114,5 @@ Route::get('ultimas-cirugias/{CentroMedico}','CirugiasPaciente\CirugiasHospitalC
 Route::get('notas-by-consulta-tipo','Notas\NotasFiltroController@NotasbyConsultaTipo');
 
 Route::get('recetas-paciente','Recetas\RecetasPacienteController@RecetaByPaciente');
+
+Route::get('farmacia-loteFechaCompuesto','Farmacia\FarmaciaFiltroController@LoteFechaCompuesto');
