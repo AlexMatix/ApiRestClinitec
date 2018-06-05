@@ -14,7 +14,7 @@ class NotasFiltroController extends ApiController
     public function NotasbyConsultaTipo(){
 
     	$idCentroMedico = $_GET['idCentroMedico'];
-
+    	$centroMedico= Centro_medico::findOrFail($idCentroMedico);
 		if(isset($_GET['idMedico'])){
 			$idMedico=$_GET['idMedico'];
 			$medico= Medicos::findOrFail($idMedico);
@@ -37,6 +37,7 @@ class NotasFiltroController extends ApiController
 		$query[]=["idCentro_medico","=",$centroMedico->id];
 
 		$notas = Notas::where($query)->get();
+		$newNotas=[];
 		foreach ($notas as $nota) {
 			$medicoN= Medicos::findOrFail($nota->idMedico);
 			$consultaN=Consultas::findOrFail($nota->idConsulta);

@@ -119,3 +119,4 @@ Route::get('traslados-date/{idCentroMedico}','Traslados\TrasladosHospitalControl
 
 Route::get('farmacia-loteFechaCompuesto','Farmacia\FarmaciaFiltroController@LoteFechaCompuesto');
 
+Route::get('vacunas-pacienteFecha','VacunasPaciente\VacunasFiltroController@VacunasFiltro');

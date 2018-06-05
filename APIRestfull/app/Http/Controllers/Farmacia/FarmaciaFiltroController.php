@@ -28,6 +28,11 @@ class FarmaciaFiltroController extends ApiController
 			$compuesto=$_GET['compuesto'];
 			$query[] = array("Nombre_compuesto","=",$compuesto);
 		}
+
+		if(isset($_GET['almacen'])){
+			$almacen=$_GET['almacen'];
+			$query[] = array("idAlmacen","=",$almacen);
+
 		if(empty($query))
 			return $this->errorResponse("No hay datos", 404);
 
