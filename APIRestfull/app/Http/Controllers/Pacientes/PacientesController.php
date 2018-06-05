@@ -26,12 +26,6 @@ class PacientesController extends ApiController
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
      
@@ -48,7 +42,7 @@ class PacientesController extends ApiController
         $newPAciente->idCentro_medico =  $campos['idCentro_medico']; 
 
         if(!$newPAciente->save()){
-            $this->errorResponse('No se pudo registrar usuario', 505);
+          return  $this->errorResponse('No se pudo registrar usuario', 505);
         }
 
         $date = date("Y-m-d");
@@ -65,7 +59,8 @@ class PacientesController extends ApiController
         
 
         if(!$newUsuario->save()){
-            $this->errorResponse('No se pudo registrar usuario', 505);
+          $this->rollbackPaciente($newPAciente->id);
+          return  $this->errorResponse('No se pudo registrar usuario', 505);
         }
 
         return $this->showOne($newUsuario);
@@ -158,5 +153,11 @@ class PacientesController extends ApiController
       }
 
       return $this->succesMessaje('Eliminado con exito', 201);
+    }
+
+
+    public function rollbackPaciente($id){
+
+        $Paciete = Pacientes::destroy($id);
     }
 }

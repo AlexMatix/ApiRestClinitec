@@ -54,7 +54,7 @@ class EnfermerasController extends ApiController
         $newEnfermera->idCentro_medico =  $campos['idCentro_medico']; 
 
         if(!$newEnfermera->save()){
-            $this->errorResponse('No se pudo registrar usuario', 505);
+           return $this->errorResponse('No se pudo registrar usuario', 505);
         }
 
         $date = date("Y-m-d");
@@ -71,7 +71,8 @@ class EnfermerasController extends ApiController
         
 
         if(!$newUsuario->save()){
-            $this->errorResponse('No se pudo registrar usuario', 505);
+            $this->rollbackEnfermera($newEnfermera->id);
+            return $this->errorResponse('No se pudo registrar usuario', 505);
         }
 
         return $this->showOne($newUsuario);
@@ -156,5 +157,9 @@ class EnfermerasController extends ApiController
       }
 
       return $this->succesMessaje('Eliminado con exito', 201);
+    }
+
+    public function rollbackEnfermera($id){
+        $enfermera = Enfermeras::destroy($id);
     }
 }
