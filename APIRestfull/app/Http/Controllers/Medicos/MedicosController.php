@@ -41,6 +41,7 @@ class MedicosController extends ApiController
     public function store(Request $request)
     {
         $campos = $request->all();
+
         $newMedico = new Medicos;
         $newMedico->Nombre          =  $campos['Nombre']; 
         $newMedico->Apellidos       =  $campos['Apellidos']; 
@@ -52,7 +53,7 @@ class MedicosController extends ApiController
         $newMedico->idCentro_medico =  $campos['idCentro_medico']; 
 
         if(!$newMedico->save()){
-            $this->errorResponse('No se pudo registrar usuario', 505);
+            return $this->errorResponse('No se pudo registrar usuario', 505);
         }
 
         $date = date("Y-m-d");
@@ -69,7 +70,8 @@ class MedicosController extends ApiController
         
 
         if(!$newUsuario->save()){
-            $this->errorResponse('No se pudo registrar usuario', 505);
+            $this->rollbackMedico($newMedico->id);
+            return $this->errorResponse('No se pudo registrar usuario', 505);
         }
 
         return $this->showOne($newUsuario);
@@ -161,5 +163,9 @@ class MedicosController extends ApiController
 
       return $this->succesMessaje('Eliminado con exito', 201);
 
+    }
+
+    public function rollbackMedico($id){
+        $medico = Medicos::destroy($id);
     }
 }
