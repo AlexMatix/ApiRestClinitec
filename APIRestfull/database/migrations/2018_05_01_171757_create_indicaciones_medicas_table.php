@@ -16,11 +16,11 @@ class CreateIndicacionesMedicasTable extends Migration
     {
         Schema::create('indicaciones_medicas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Dieta');
-            $table->string('Esquema_soluciones');
-            $table->string('Lista_medicamentos');
-            $table->integer('Medias_generales');
-            $table->string('Hemocomponentes')->nullable();
+            $table->text('Dieta');
+            $table->text('Esquema_soluciones');
+            $table->text('Lista_medicamentos');
+            $table->text('Medias_generales');
+            $table->text('Hemocomponentes')->nullable();
             $table->integer('idConsulta')->unsigned();
             $table->integer('idCentro_medico')->unsigned();
             $table->integer('Estado')->unsigned()->default(Indicaciones_medicas::ACTIVO);

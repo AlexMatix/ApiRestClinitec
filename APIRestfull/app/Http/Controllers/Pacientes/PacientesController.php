@@ -18,12 +18,20 @@ class PacientesController extends ApiController
 
     public function index()
     {
-        $pacientes = Pacientes::where("Estado", "<>", 0)->get();
-        if(!empty($pacientes)){
-            return $this->showAll($pacientes);
-        }else{
-            return $this->errorResponse('Datos no encontrados', 404);        
+
+      if(!isset($_GET['centro'])){
+            return $this->errorResponse('Centro medico no encontrado', 404);
         }
+        
+        $pacientes = Pacientes::where([
+                    ["Estado", "<>", 0],
+                    ["idCentro_medico","=",$_GET['centro']]
+                    ])->get();
+        
+        if(empty($pacientes)){
+            return $this->errorResponse('Datos no encontrados', 404);
+        }
+        return $this->showAll($pacientes, 200);
     }
 
     public function store(Request $request)

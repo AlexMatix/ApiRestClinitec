@@ -8,14 +8,17 @@ use Illuminate\Http\Request;
 
 class vacunasController extends ApiController
 {
-    public function __construct(){
-
-        $this->middleware('client.credentials')->only(['index', 'show']);
-    }
     
     public function index()
     {
-        $vacuna = Vacunas::where("Estado", "<>", 0)->get();
+        if(!isset($_GET['centro'])){
+            return $this->errorResponse('Centro medico no encontrado', 404);
+        }
+        
+        $vacuna = Vacunas::where([
+                    ["Estado", "<>", 0],
+                    ["idCentro_medico","=",$_GET['centro']]
+                    ])->get();
         
         if(empty($vacuna)){
             return $this->errorResponse('Datos no encontrados', 404);

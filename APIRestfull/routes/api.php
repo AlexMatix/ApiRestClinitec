@@ -20,10 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //el parametro only solo permite los metodos de su parametro
 //Route::resource('suscripciones', 'Suscripciones\SuscripcionesController', ['only' => ['index', 'show']]);
 // *************                                 *****************     ***  ['except' => ['create','edit']] excluye los metodos del arreglo
-Route::get('breweries', ['middleware' => 'cors', function()
-{
-    return \Response::json(\App\Brewery::with('beers', 'geocode')->paginate(10), 200);
-}]);
 
 Route::resource('suscripciones', 'Suscripciones\SuscripcionesController', ['except' => ['create','edit']]);
 
@@ -120,3 +116,5 @@ Route::get('traslados-date/{idCentroMedico}','Traslados\TrasladosHospitalControl
 Route::get('farmacia-loteFechaCompuesto','Farmacia\FarmaciaFiltroController@LoteFechaCompuesto');
 
 Route::get('vacunas-pacienteFecha','VacunasPaciente\VacunasFiltroController@VacunasFiltro');
+
+Route::post('nueva-consulta','Consultas\ConsultasInsertController@insertConsulta');

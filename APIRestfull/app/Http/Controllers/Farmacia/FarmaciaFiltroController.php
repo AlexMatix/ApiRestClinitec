@@ -7,8 +7,8 @@ use App\Http\Controllers\ApiController;
 use App\Farmacias;
 use App\Centro_medico;
 
-class FarmaciaFiltroController extends ApiController
-{
+class FarmaciaFiltroController extends ApiController{
+    
     public function LoteFechaCompuesto(){
 
     	$idCentroMedico = $_GET['idCentroMedico'];
@@ -33,13 +33,13 @@ class FarmaciaFiltroController extends ApiController
 			$almacen=$_GET['almacen'];
 			$query[] = array("idAlmacen","=",$almacen);
 
-		if(empty($query))
-			return $this->errorResponse("No hay datos", 404);
+			if(empty($query))
+				return $this->errorResponse("No hay datos", 404);
 
-		$query[]=["idCentro_medico","=",$centroMedico->id];
-
+			$query[]=["idCentro_medico","=",$centroMedico->id];
+		}
 		$farmacias = Farmacias::where($query)->get();
 
-		return $this->showList($farmacias);
-    }
+		return $this->showList($farmacias);	
+	}
 }

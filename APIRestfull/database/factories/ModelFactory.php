@@ -182,7 +182,6 @@ $factory->define(Farmacias::class, function (Faker\Generator $faker) {
         'Precentacion'       => $faker->randomElement(['Gotas','Pastillas','Jarabe','Suspencion','Tabletas']),
         'Descripcion'        => $faker->text($maxNbChars = 20),
         'Precio'             => $faker->numberBetween($min = 40, $max = 100),
-        'Cantidad'           => $faker->numberBetween($min = 40, $max = 100),
         'Codigo_barras'      => str_random(10),
         'Lote'               => $faker->numberBetween($min = 10, $max = 30),
         'Caducidad'          => $faker->year($max = 'now'),
