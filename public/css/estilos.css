@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+
+img {
+    margin-top: 20px;
+}
+pre {
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.boton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.media, .cont {
+    color: #006fb2;
+}
+
+.titulos {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: blue;
+    text-align: center;
+}
+
+.dir, phone, em, fb, likd, whp {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: black;
+    text-align: right;
+}

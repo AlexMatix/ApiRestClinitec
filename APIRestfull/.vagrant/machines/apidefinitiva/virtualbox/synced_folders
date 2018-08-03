@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/vagrant/apirestful":{"type":null,"mount_options":["uid=1000","gid=1000"],"guestpath":"/home/vagrant/apirestful","hostpath":"/home/Repos/ApiRestClinitec/APIRestfull","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/Repos/ApiRestClinitec/APIRestfull","disabled":false,"__vagrantfile":true}}}
